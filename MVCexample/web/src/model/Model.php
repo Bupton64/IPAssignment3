@@ -96,7 +96,9 @@ class Model
             // Sample products
             if (!$this->db->query(
                 "INSERT INTO `category` VALUES (NULL,'Hammers'), 
-                                                    (NULL,'Spades');"
+                                                    (NULL,'Spades'),
+                                                    (NULL, 'Paint Brushes'),
+                                                    (NULL, 'Power tools');"
             )) {
                 throw new \mysqli_sql_exception($this->db->error, $this->db->errno);
                 error_log("Failed creating sample category data!", 0);
@@ -129,7 +131,18 @@ class Model
             // Sample products
             if (!$this->db->query(
                 "INSERT INTO `product` VALUES (NULL,'HM-04','Claw Hammer', 12.00,1,23), 
-                                                    (NULL,'SP-231','Big Spade', 23.00, 2, 11);"
+                                                    (NULL,'SP-231','Big Spade', 23.00, 2, 11),
+                                                    (NULL,'HM-32', 'Mini Hammer', 7.00, 1, 22),
+                                                    (NULL,'HM-89Z','Mallet', 35.00, 1, 18),
+                                                    (NULL,'PB-58J','Fine Tip Brush',7.50, 3, 76),
+                                                    (NULL,'PB-67','Thick Weatherboard Brush', 19.99, 3, 5),
+                                                    (NULL,'SP-67','Gravedigging Shovel',31.00,2, 1),
+                                                    (NULL,'SP-00','Small Spade',8.20, 2, 23),
+                                                    (NULL,'PT-2X','Table Saw', 45.00, 4, 7),
+                                                    (NULL,'PT-322','Angle Grinder', 34.50, 4, 11),
+                                                    (NULL,'PT-68K','Chainsaw', 27.80, 4, 9),
+                                                    (NULL,'PT-Y78','Handheld Drill', 31.20, 4, 2),
+                                                    (NULL,'PT-00','Jackhammer', 98.00, 4, 3);"
             )) {
                 error_log("Failed creating sample product data!", 0);
                 throw new \mysqli_sql_exception($this->db->error, $this->db->errno);
