@@ -25,6 +25,17 @@ class AccountController extends Controller
         $view = new View('loginPage');
         echo $view->render();
     }
+
+    /**
+     * Account Create action
+     */
+    public function createIndexAction()
+    {
+        $view = new View('registerPage');
+        echo $view->render();
+    }
+
+
     /**
      * Account Create action
      */
