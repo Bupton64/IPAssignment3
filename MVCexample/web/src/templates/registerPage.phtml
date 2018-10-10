@@ -28,12 +28,12 @@
 			<h2>Registration Form</h2>
 			</div>
 		   <div id="registration">
-        <form action="<?= $linkTo('accountCreated'); ?>" method="post">
-            <p>Name: <input type="text" placeholder="Name" required></p>
-            <p>Username: <input type="text" placeholder="Username" required></p>
-            <p>Email: <input type="text" placeholder="Email" required></p>
-            <p>Password: <input type="password" placeholder="Password" required></p>
-            <p>Confirm Password: <input type="password" placeholder="Password" required></p>
+        <form method="POST" action="<?= $linkTo('accountCreated'); ?>" >
+            <p>Name: <input type="text" placeholder="Name" name="name" required></p>
+            <p>Username: <input type="text" placeholder="Username" name="username" required></p>
+            <p>Email: <input type="text" placeholder="Email" name="email" required></p>
+            <p>Password: <input type="password" placeholder="Password" name="password" required></p>
+            <p>Confirm Password: <input type="password" placeholder="Password" name="password_confirm" required></p>
             </div>
             <input type="submit" value="Register" >
         </form>

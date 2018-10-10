@@ -21,7 +21,18 @@ class AccountModel extends Model
      * @var string Account Name
      */
     private $name;
-
+    /**
+     * @var
+     */
+    private $username;
+    /**
+     * @var
+     */
+    private $email;
+    /**
+     * @var
+     */
+    private $password;
 
     /**
      * @return int Account ID
@@ -52,6 +63,54 @@ class AccountModel extends Model
     }
 
     /**
+     * @return mixed
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * @param mixed $username
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    /**
      * Loads account information from the database
      *
      * @param int $id Account ID
@@ -60,12 +119,15 @@ class AccountModel extends Model
      */
     public function load($id)
     {
-        if (!$result = $this->db->query("SELECT * FROM `account` WHERE `id` = $id;")) {
-            // throw new ...
-        }
 
+        if (!$result = $this->db->query("SELECT * FROM `account` WHERE `id` = $id;")) {
+            throw new \mysqli_sql_exception($this->db->error, $this->db->errno);
+        }
         $result = $result->fetch_assoc();
         $this->name = $result['name'];
+        $this->username = $result['username'];
+        $this->email = $result['email'];
+        $this->password = $result['password'];
         $this->id = $id;
 
         return $this;
@@ -73,25 +135,24 @@ class AccountModel extends Model
 
     /**
      * Saves account information to the database
+     * Currently only occurs on account creation
      *
      * @return $this AccountModel
      */
     public function save()
     {
+        // NO Sql protection
         $name = $this->name ?? "NULL";
+        $username = $this->username ?? "NULL";
+        $email= $this->email ?? "NULL";
+        $password = $this->username ?? "NULL";
         if (!isset($this->id)) {
             // New account - Perform INSERT
-            if (!$result = $this->db->query("INSERT INTO `account` VALUES (NULL,'$name');")) {
-                // throw new ...
+            if (!$result = $this->db->query("INSERT INTO `account` VALUES (NULL,'$name','$username','$email','$password');")) {
+                throw new \mysqli_sql_exception($this->db->error, $this->db->errno);
             }
             $this->id = $this->db->insert_id;
-        } else {
-            // saving existing account - perform UPDATE
-            if (!$result = $this->db->query("UPDATE `account` SET `name` = '$name' WHERE `id` = $this->id;")) {
-                // throw new ...
-            }
         }
-
         return $this;
     }
 
@@ -144,7 +205,6 @@ class AccountModel extends Model
         if (!$result = $this->db->query("DELETE FROM `account` WHERE `account`.`id` = $this->id;")) {
             //throw new ...
         }
-
         return $this;
     }
 }

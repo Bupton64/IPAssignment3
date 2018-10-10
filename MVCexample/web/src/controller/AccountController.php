@@ -29,7 +29,7 @@ class AccountController extends Controller
     /**
      * Account Create action
      */
-    public function createIndexAction()
+    public function registerAction()
     {
         $view = new View('registerPage');
         echo $view->render();
@@ -41,10 +41,30 @@ class AccountController extends Controller
      */
     public function createAction()
     {
-        $account = new AccountModel();
-        $account->sendConfirmationEmail();
+        try {
+            $account = new AccountModel();
+        } catch (\Exception $e){
+            // Direct to error page?
+            error_log("in construct catch", 100);
+        }
+        if(!isset($_POST["name"])){
+            error_log("Post aint set ya fuck");
+        }
+        $account->setName($_POST['name']);
+        $account->setUsername($_POST['username']);
+        $account->setEmail($_POST['email']);
+        $account->setPassword($_POST['password']);
+        error_log("pre save", 100);
+        try {
+            $account->save();
+        } catch (\Exception $e){
+            // Do stuff
+            error_log("in save catch", 100);
+        }
+        error_log("post save", 100);
+        //$account->sendConfirmationEmail(); // replace to make zon a happy boi
         $view = new View('accountCreated');
-        echo $view->render();
+        echo $view->addData('account', $account)->render();
     }
 
     public function loginAction()

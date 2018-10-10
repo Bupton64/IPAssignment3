@@ -54,7 +54,7 @@ $collection->attachRoute(
     new Route(
         '/account/create/',
         array(
-            '_controller' => 'agilman\a2\controller\AccountController::createIndexAction',
+            '_controller' => 'agilman\a2\controller\AccountController::registerAction',
             'methods' => 'GET',
             'name' => 'accountCreate'
         )
@@ -66,7 +66,7 @@ $collection->attachRoute(
         '/account/create/complete',
         array(
         '_controller' => 'agilman\a2\controller\AccountController::createAction',
-        'methods' => 'GET',
+        'methods' => 'POST',
         'name' => 'accountCreated'
         )
     )
