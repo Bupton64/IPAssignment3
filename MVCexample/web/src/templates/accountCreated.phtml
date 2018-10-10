@@ -1,7 +1,41 @@
-<?php include "header.phtml" ?>
+
+
+<?php 
+session_start();
+include "header.phtml"
+ ?>
 <!---------- Body starts --------------->
-Account <?= $accountId ?> created successfully. <br>
-<a href=<?= $linkTo('accountIndex'); ?>>Back</a>
-<br>
-    <!---------- Body ends -------------------->
+
+<div id="wrapper">
+	<div id="headerWrapper">
+		<div id= "header" class="container">
+			<div id= "logo">
+				<h1><a href="<?= $linkTo('welcome'); ?>">ToolStocker</a></h1>
+				</div>
+			
+		</div>
+		
+	</div>
+	<div id= "page">
+		
+		<div id = "content">
+			<div class = "title">
+			<h2>Account <?= $accountId ?> created successfully.</h2>
+			</div>
+			<div class="partition">
+				 <br>
+				 <p>You should receive an email confirming account creation</p>
+					<p>Click <a href="<?= $linkTo('home'); ?>">Here</a> to return back to login page</p>
+			</div>
+			<br>
+			<br>
+			
+		</div>
+	</div>
+</div>
+
+
+
+<!---------- Body ends -------------------->
 <?php include "footer.phtml" ?>
+

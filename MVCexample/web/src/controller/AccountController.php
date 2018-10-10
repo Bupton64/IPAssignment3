@@ -30,7 +30,7 @@ class AccountController extends Controller
      */
     public function createAction()
     {
-        $view = new View('registerPage');
+        $view = new View('accountCreated');
         echo $view->render();
     }
 

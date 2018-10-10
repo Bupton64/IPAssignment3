@@ -114,7 +114,7 @@ body{
 }
 
 #menuBar a:hover {
-	text-decoration-color: #ADADAD;
+	background: #42bcf4;
 }
 
 #registration {
