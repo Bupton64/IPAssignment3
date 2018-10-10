@@ -41,6 +41,8 @@ class AccountController extends Controller
      */
     public function createAction()
     {
+        $account = new AccountModel();
+        $account->sendConfirmationEmail();
         $view = new View('accountCreated');
         echo $view->render();
     }
