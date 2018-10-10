@@ -17,24 +17,23 @@ class AccountController extends Controller
      */
     public function indexAction()
     {
-        $collection = new AccountCollectionModel();
-        $accounts = $collection->getAccounts();
-        $view = new View('accountIndex');
-        echo $view->addData('accounts', $accounts)->render();
+        $view = new View('loginPage');
+        echo $view->render();
     }
     /**
      * Account Create action
      */
     public function createAction()
     {
-        $account = new AccountModel();
-        $names = ['Bob','Mary','Jon','Peter','Grace'];
-        shuffle($names);
-        $account->setName($names[0]); // will come from Form data
-        $account->save();
-        $id = $account->getId();
-        $view = new View('accountCreated');
-        echo $view->addData('accountId', $id)->render();
+        $view = new View('registerPage');
+        echo $view->render();
+    }
+
+    public function loginAction()
+    {
+        // Test login
+        $view = new View('userHome');
+        echo $view->render();
     }
 
     /**

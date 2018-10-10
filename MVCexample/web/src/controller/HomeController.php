@@ -11,10 +11,10 @@ namespace agilman\a2\controller;
 class HomeController extends Controller
 {
     /**
-     * Account Index action
+     * Link to login
      */
     public function indexAction()
     {
-        $this->redirect('accountIndex');
+        $this->redirect('loginIndex');
     }
 }

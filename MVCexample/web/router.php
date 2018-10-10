@@ -10,20 +10,9 @@ $collection->attachRoute(
     new Route(
         '/',
         array(
-            '_controller' => 'agilman\a2\controller\HomeController::indexAction',
+            '_controller' => 'agilman\a2\controller\AccountController::indexAction',
             'methods' => 'GET',
             'name' => 'Home'
-        )
-    )
-);
-
-$collection->attachRoute(
-    new Route(
-        '/account/',
-        array(
-        '_controller' => 'agilman\a2\controller\AccountController::indexAction',
-        'methods' => 'GET',
-        'name' => 'accountIndex'
         )
     )
 );
@@ -41,22 +30,11 @@ $collection->attachRoute(
 
 $collection->attachRoute(
     new Route(
-        '/account/delete/:id',
+        '/account/home/',
         array(
-        '_controller' => 'agilman\a2\controller\AccountController::deleteAction',
-        'methods' => 'GET',
-        'name' => 'accountDelete'
-        )
-    )
-);
-
-$collection->attachRoute(
-    new Route(
-        '/account/update/:id',
-        array(
-        '_controller' => 'agilman\a2\controller\AccountController::updateAction',
-        'methods' => 'GET',
-        'name' => 'accountUpdate'
+            '_controller' => 'agilman\a2\controller\AccountController::loginAction',
+            'methods' => 'POST',
+            'name' => 'loginAttempt'
         )
     )
 );

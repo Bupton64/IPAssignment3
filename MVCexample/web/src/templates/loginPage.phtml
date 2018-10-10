@@ -1,0 +1,12 @@
+<?php include "header.phtml" ?>
+<!---------- Body starts --------------->
+<h1>Welcome to ToolStocker</h1>
+    <form action = "<?= $linkTo('loginAttempt'); ?>" method="post">
+        <p>Username: <input type="text" name="username_input" action="" ></p>
+        <p>Password: <input type="text" name="password_input" action="" ></p>
+        <input type="submit" value="Login">
+    </form>
+<a href=<?= $linkTo('accountCreate'); ?>>Don't have an account? Register here.</a>
+<br>
+<!---------- Body ends -------------------->
+<?php include "footer.phtml" ?>
