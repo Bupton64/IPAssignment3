@@ -1,12 +1,29 @@
 <?php include "header.phtml" ?>
 <!---------- Body starts --------------->
-<h1>Welcome to ToolStocker</h1>
-    <form action = "<?= $linkTo('loginAttempt'); ?>" method="post">
-        <p>Username: <input type="text" name="username_input" action="" ></p>
-        <p>Password: <input type="text" name="password_input" action="" ></p>
-        <input type="submit" value="Login">
-    </form>
-<a href=<?= $linkTo('accountCreate'); ?>>Don't have an account? Register here.</a>
-<br>
+
+<div id=wrapper>
+	<div id=headerWrapper>
+		<div id=menuBar>
+			<div id= logo>
+			</div>
+		</div>
+	</div>
+	<div id= content>
+		<h1>Welcome to ToolStocker</h1>
+		<div id = page>
+			
+		    <form action = "<?= $linkTo('loginAttempt'); ?>" method="post">
+		        <p>Username: <input type="text" name="username_input" action="" ></p>
+		        <p>Password: <input type="text" name="password_input" action="" ></p>
+		        <input type="submit" value="Login">
+		    </form>
+			<a href=<?= $linkTo('accountCreate'); ?>>Don't have an account? Register here.</a>
+			<br>
+		</div>
+	</div>
+</div>
+
+
+
 <!---------- Body ends -------------------->
 <?php include "footer.phtml" ?>
