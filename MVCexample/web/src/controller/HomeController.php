@@ -1,7 +1,7 @@
 <?php
 namespace agilman\a2\controller;
 
-
+use agilman\a2\view\View;
 /**
  * Class HomeController
  *
@@ -11,10 +11,30 @@ namespace agilman\a2\controller;
 class HomeController extends Controller
 {
     /**
-     * Link to login
+     * Link to Welcome
      */
     public function indexAction()
     {
-        $this->redirect('loginIndex');
+        $view = new View('userHome');
+        echo $view->render();
+    }
+
+     /**
+     * Link to Browse
+     */
+    public function browseIndexAction()
+    {
+        $view = new View('browsePage');
+        echo $view->render();
+    }
+
+
+     /**
+     * Link to Search
+     */
+    public function searchIndexAction()
+    {
+        $view = new View('searchPage');
+        echo $view->render();
     }
 }

@@ -51,7 +51,7 @@ body{
 #logo 
 	{
 		width: 500px;
-		height: 100px;
+		height: 90px;
 		margin: 0 auto;
 		padding: 2em 0em;
 		text-transform: uppercase;
@@ -66,38 +66,61 @@ body{
 		font-size: 3em;
 	}
 
+#logo a{
+	color: #FFF;
+	text-decoration: none;
+}
+
 
 /* Menu Bar */
 
-#menu {
+#menuBar {
 	
-	width: 500px;
+	width: 100%;
 	height: 90px;
 	overflow: hidden;
 	margin: 0 auto;
 	padding: 0;
-	background: #00AABB;
+	background-color: #00AABB;
 }
 
-#menu .current_page_item a {
+#menuBar .current_page a {
 	background: #008C9A;
 }
 
-#menu ul {
+#menuBar ul {
 	
 	margin: 0;
-	padding: 50px 0px 0px 0px;
+	padding: 40px 0px 0px 0px;
 	list-style: none;
 	line-height: normal;
 	text-align: center;
 }
 
-#menu li {
+#menuBar li {
 
+	display: inline-block;
 	padding: 0px 0px 0px 0px;
 }
 
+#menuBar a{
+	color: #FFF;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	padding: 20px 40px;
+	font-size: 1em;
+	font-weight: 600;
+	text-decoration: none;
+}
 
+#menuBar a:hover {
+	text-decoration-color: #ADADAD;
+}
+
+#registration {
+	text-align: left;
+	padding-left: 35%;
+}
 
 #content
 {

@@ -12,7 +12,40 @@ $collection->attachRoute(
         array(
             '_controller' => 'agilman\a2\controller\AccountController::indexAction',
             'methods' => 'GET',
-            'name' => 'Home'
+            'name' => 'home'
+        )
+    )
+);
+
+$collection->attachRoute(
+    new Route(
+        '/welcome',
+        array(
+            '_controller' => 'agilman\a2\controller\HomeController::indexAction',
+            'methods' => 'GET',
+            'name' => 'welcome'
+        )
+    )
+);
+
+$collection->attachRoute(
+    new Route(
+        '/search',
+        array(
+            '_controller' => 'agilman\a2\controller\HomeController::searchIndexAction',
+            'methods' => 'GET',
+            'name' => 'search'
+        )
+    )
+);
+
+$collection->attachRoute(
+    new Route(
+        '/browse',
+        array(
+            '_controller' => 'agilman\a2\controller\HomeController::browseIndexAction',
+            'methods' => 'GET',
+            'name' => 'browse'
         )
     )
 );

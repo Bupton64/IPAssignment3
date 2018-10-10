@@ -1,8 +1,5 @@
 
 
-
-
-
 <?php include "header.phtml" ?>
 <!---------- Body starts --------------->
 
@@ -16,8 +13,8 @@
 		</div>
 		<div id="menuBar" class="container">
 				<ul>
-					<li class="current_page"><a href="<?= $linkTo('welcome'); ?>">Home Page</a></li>
-					<li><a href="<?= $linkTo('search'); ?>">Search</a></li>
+					<li><a href="<?= $linkTo('welcome'); ?>">Home Page</a></li>
+					<li class="current_page"><a href="<?= $linkTo('search'); ?>">Search</a></li>
 					<li><a href= "<?= $linkTo('browse'); ?>">Browse</a></li>
 					<li><a href="#">Logout</a></li>
 				</ul>
@@ -28,11 +25,9 @@
 		
 		<div id = "content">
 			<div class = "title">
-			<h2>Welcome to ToolStocker</h2>
+			<h2>Search Menu</h2>
 			</div>
-			<div class="partition">
-				<p>To do things please click on browse or search a find what you want to find....</p>
-			</div>
+			<p> Search <input type="text" size="40" placeholder="e.g. Hammer"></p>
 			<br>
 			<br>
 			
