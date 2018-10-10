@@ -8,6 +8,7 @@ session_start();
 <!---------- Body starts --------------->
 
 <div id="wrapper">
+	<!---------- Header Wrapper starts --------------->
 	<div id="headerWrapper">
 		<div id= "header" class="container">
 			<div id= "logo">
@@ -15,6 +16,8 @@ session_start();
 				</div>
 			
 		</div>
+
+		<!--- Menu starts here -->
 		<div id="menuBar" class="container">
 				<ul>
 					<li><a href="<?= $linkTo('welcome'); ?>">Home Page</a></li>
@@ -25,9 +28,12 @@ session_start();
 
 			</div>
 	</div>
+	<!---------- Header Wrapper & Menu End here --------------->
+
+	<!--- Content Start -->
 	<div id= "page">
 		
-		<div id = "content">
+		<div id = "content" class="container">
 			<div class = "title">
 			<h2>Browse Menu</h2>
 			</div>
@@ -37,6 +43,7 @@ session_start();
 			
 		</div>
 	</div>
+	<!--- Content Ends here ----------->
 </div>
 
 

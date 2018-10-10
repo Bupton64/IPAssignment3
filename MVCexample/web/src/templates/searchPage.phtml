@@ -1,13 +1,12 @@
-
-
 <?php 
-
 session_start();
 include "header.phtml"
  ?>
-<!---------- Body starts --------------->
+ <!---------- Body starts-------------------->
+
 
 <div id="wrapper">
+	<!---------- Header Wrapper starts --------------->
 	<div id="headerWrapper">
 		<div id= "header" class="container">
 			<div id= "logo">
@@ -15,6 +14,8 @@ include "header.phtml"
 				</div>
 			
 		</div>
+
+		<!--- Menu starts here -->
 		<div id="menuBar" class="container">
 				<ul>
 					<li><a href="<?= $linkTo('welcome'); ?>">Home Page</a></li>
@@ -25,9 +26,12 @@ include "header.phtml"
 
 			</div>
 	</div>
+	<!---------- Header Wrapper & Menu End here --------------->
+
+	<!--- Content Start -->
 	<div id= "page">
 		
-		<div id = "content">
+		<div id = "content" class="container">
 			<div class = "title">
 			<h2>Search Menu</h2>
 			</div>
@@ -36,13 +40,14 @@ include "header.phtml"
 			<br>
 			<p><b>Search Results</b></p>
 			<div id ="result">
-				<script>
-					$(document).ready(function(){})
-				</script>
+			<table>
+				<!--- Fill in Search Results here -->
+			</table>
 			</div>
 			
 		</div>
 	</div>
+	<!--- Content Ends here ----------->
 </div>
 
 

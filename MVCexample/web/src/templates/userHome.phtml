@@ -10,6 +10,7 @@ include "header.phtml" ?>
 <!---------- Body starts --------------->
 
 <div id="wrapper">
+	<!---------- Header Wrapper starts --------------->
 	<div id="headerWrapper">
 		<div id= "header" class="container">
 			<div id= "logo">
@@ -17,6 +18,8 @@ include "header.phtml" ?>
 				</div>
 			
 		</div>
+
+		<!--- Menu starts here -->
 		<div id="menuBar" class="container">
 				<ul>
 					<li class="current_page"><a href="<?= $linkTo('welcome'); ?>">Home Page</a></li>
@@ -27,9 +30,12 @@ include "header.phtml" ?>
 
 			</div>
 	</div>
+<!---------- Header Wrapper & Menu End here --------------->
+
+<!--- Content Start -->
 	<div id= "page">
 		
-		<div id = "content">
+		<div id = "content" class="containers">
 			<div class = "title">
 			<h2>Welcome to ToolStocker</h2>
 			</div>
@@ -41,6 +47,7 @@ include "header.phtml" ?>
 			
 		</div>
 	</div>
+	<!--- Content Ends here ----------->
 </div>
 
 
