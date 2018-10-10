@@ -1,22 +1,30 @@
 <?php include "header.phtml" ?>
 <!---------- Body starts --------------->
 
-<div id=wrapper>
-	<div id=headerWrapper>
-		<div id=menuBar>
-			<div id= logo>
-			</div>
-		</div>
-	</div>
-	<div id= content>
-		<h1>Welcome to ToolStocker</h1>
-		<div id = page>
+<div id="wrapper">
+	<div id="headerWrapper">
+		<div id= "header" class="container">
+			<div id= "logo">
+				<h1>ToolStocker</h1>
+				</div>
 			
+		</div>
+		<div id="menuBar" class="container">
+				
+			</div>
+	</div>
+	<div id= "page">
+		
+		<div id = "content">
+			<div class = "title">
+			<h2>Welcome to ToolStocker</h2>
+			</div>
 		    <form action = "<?= $linkTo('loginAttempt'); ?>" method="post">
 		        <p>Username: <input type="text" name="username_input" action="" ></p>
 		        <p>Password: <input type="text" name="password_input" action="" ></p>
 		        <input type="submit" value="Login">
 		    </form>
+		    <br> 	
 			<a href=<?= $linkTo('accountCreate'); ?>>Don't have an account? Register here.</a>
 			<br>
 		</div>

@@ -1,24 +1,49 @@
-
-body {
-    background-color: lightgrey;
+html, body {
+	height: 100%;
 }
 
+body{
+	margin: 0px;
+	padding: 0px;
+	background-image: url("wallpaper.jpg");
+	background-repeat: repeat;
+}
+
+#content .title h2{
+	color: #00AABB;
+	text-transform: uppercase;
+	font-weight:  700;
+	font-size: 2em;
+	letter-spacing: 0.02em;
+}
 
 #wrapper{
-	background: #FFFFFF url(images/bg01.png) repeat;
+	background-image: url("wallpaper.jpg");
+	background-repeat: repeat;
 }
 
-#headerwrapper {
+#headerWrapper {
 	overflow: hidden;
 	background-size: 100%;
 	background: #333333;
 
 }
+
+#page {
+	position:  relative;
+	overflow: hidden;
+}
+
 #content {
-	width:350px;
+	width: 99%;
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.container {
+	width: 99%;
+	margin: 0px auto;
 }
 
 /* logo */
@@ -35,6 +60,8 @@ body {
 
 #logo h1
 	{
+		text-align: center;
+		color: #FFF;
 		letter-spacing: 0.10em;
 		font-size: 3em;
 	}
@@ -75,11 +102,19 @@ body {
 #content
 {
 	float: right;
-	width: 790px;
+	width: 99%;
 }
-
+#footer-wrapper{
+	width: 100%;
+	margin-top: 170px;
+	background: #0F0F0F;
+}
 
 #footer
 	{
 		color: #ADADAD;
+		height: 10px;
+		padding: 3em 0em;
+		text-align: center;
+
 	}
