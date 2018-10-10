@@ -4,11 +4,16 @@ body {
 }
 
 
-#warpper{
-	margin: 1%;
-
+#wrapper{
+	background: #FFFFFF url(images/bg01.png) repeat;
 }
 
+#headerwrapper {
+	overflow: hidden;
+	background-size: 100%;
+	background: #333333;
+
+}
 #content {
 	width:350px;
 	text-align: center;
@@ -16,27 +21,65 @@ body {
 	margin-right: auto;
 }
 
+/* logo */
+
+#logo 
+	{
+		width: 500px;
+		height: 100px;
+		margin: 0 auto;
+		padding: 2em 0em;
+		text-transform: uppercase;
+		background: #333333;
+	}
+
+#logo h1
+	{
+		letter-spacing: 0.10em;
+		font-size: 3em;
+	}
 
 
 /* Menu Bar */
 
 #menu {
-	float: right;
+	
 	width: 500px;
 	height: 90px;
+	overflow: hidden;
 	margin: 0 auto;
 	padding: 0;
+	background: #00AABB;
+}
+
+#menu .current_page_item a {
+	background: #008C9A;
 }
 
 #menu ul {
-	float: right;
+	
 	margin: 0;
 	padding: 50px 0px 0px 0px;
 	list-style: none;
 	line-height: normal;
+	text-align: center;
 }
 
 #menu li {
-	float: left;
+
 	padding: 0px 0px 0px 0px;
 }
+
+
+
+#content
+{
+	float: right;
+	width: 790px;
+}
+
+
+#footer
+	{
+		color: #ADADAD;
+	}
