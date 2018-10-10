@@ -17,6 +17,11 @@ class AccountController extends Controller
      */
     public function indexAction()
     {
+        try {
+            $account = new AccountModel(); // Test statement to create database
+        } catch (\Exception $e){
+            // Deal with exception
+        }
         $view = new View('loginPage');
         echo $view->render();
     }
