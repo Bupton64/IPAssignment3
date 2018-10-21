@@ -1,6 +1,6 @@
 <?php
 namespace agilman\a2\controller;
-
+session_start();
 use agilman\a2\model\{AccountModel, AccountCollectionModel};
 use agilman\a2\view\View;
 
@@ -47,9 +47,6 @@ class AccountController extends Controller
             // Direct to error page?
             error_log("in construct catch", 100);
         }
-        if(!isset($_POST["name"])){
-            error_log("Post aint set ya fuck");
-        }
         $account->setName($_POST['name']);
         $account->setUsername($_POST['username']);
         $account->setEmail($_POST['email']);
@@ -69,9 +66,30 @@ class AccountController extends Controller
 
     public function loginAction()
     {
-        // Test login
-        $view = new View('userHome');
-        echo $view->render();
+        $entered_username = $_POST["username_input"];
+        $entered_password = $_POST["password_input"];
+        try {
+            $account = new AccountModel();
+            if ($account->validateLogin($entered_username, $entered_password)) {
+
+                $this->redirect('welcome');
+            } else {
+                $error_msg = "Invalid username or password";
+                $_SESSION['error'] = $error_msg;
+                $this->redirect('home');
+            }
+        } catch (\Exception $e){
+            error_log("You threw an exception dummy!", 100);
+        }
+    }
+
+    /**
+     * Processes the users request to log out.
+     */
+    public function logoutAction()
+    {
+        session_unset();
+        $this->redirect('home');
     }
 
     /**

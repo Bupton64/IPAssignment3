@@ -83,5 +83,17 @@ $collection->attachRoute(
     )
 );
 
+
+$collection->attachRoute(
+    new Route(
+        '/logout',
+        array(
+            '_controller' => 'agilman\a2\controller\AccountController::logoutAction',
+            'methods' => 'GET',
+            'name' => 'logout'
+        )
+    )
+);
+
 $router = new Router($collection);
 $router->setBasePath('/');

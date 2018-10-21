@@ -1,4 +1,6 @@
-<?php include "header.phtml" ?>
+<?php
+    include "header.phtml"
+?>
 <!---------- Body starts --------------->
 
 <div id="wrapper">
@@ -22,9 +24,15 @@
 			<div class = "title">
 			<h2>Welcome to ToolStocker</h2>
 			</div>
+            <?php
+            if($_SESSION['error']){
+                print "<p>Invalid Username or Password </p><br>";
+                session_unset();
+            }
+            ?>
 		    <form action = "<?= $linkTo('loginAttempt'); ?>" method="post">
 		        <p>Username: <input type="text" name="username_input" action="" ></p>
-		        <p>Password: <input type="text" name="password_input" action="" ></p>
+		        <p>Password: <input type="password" name="password_input" action="" ></p>
 		        <input type="submit" value="Login">
 		    </form>
 		    <br> 	

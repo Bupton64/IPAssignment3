@@ -148,12 +148,30 @@ class AccountModel extends Model
         $password = $this->username ?? "NULL";
         if (!isset($this->id)) {
             // New account - Perform INSERT
+            $password = password_hash($password, PASSWORD_BCRYPT);
             if (!$result = $this->db->query("INSERT INTO `account` VALUES (NULL,'$name','$username','$email','$password');")) {
                 throw new \mysqli_sql_exception($this->db->error, $this->db->errno);
             }
             $this->id = $this->db->insert_id;
         }
         return $this;
+    }
+
+    public function validateLogin($user, $pass)
+    {
+        if(!$result = $this->db->query("SELECT * FROM `account` WHERE `username` = '$user';")){
+            throw new \mysqli_sql_exception('Account select failed on login.', 100);
+        }
+        if($result->num_rows == 0){
+            return false;
+        }
+        $result = $result->fetch_assoc();
+        if(password_verify($pass, $result['password'])){
+            return true;
+        } else {
+            error_log("Did not verify password");
+            return false;
+        }
     }
 
 
