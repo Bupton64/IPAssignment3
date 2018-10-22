@@ -1,6 +1,7 @@
 <?php
 namespace agilman\a2\controller;
 session_start();
+$_SESSION['auth'] = false;
 use agilman\a2\model\{AccountModel, AccountCollectionModel};
 use agilman\a2\view\View;
 
@@ -21,6 +22,7 @@ class AccountController extends Controller
             $account = new AccountModel(); // Test statement to create database
         } catch (\Exception $e){
             // Deal with exception
+            error_log("ya fucked cunt");
         }
         $view = new View('loginPage');
         echo $view->render();
@@ -71,10 +73,10 @@ class AccountController extends Controller
         try {
             $account = new AccountModel();
             if ($account->validateLogin($entered_username, $entered_password)) {
-
+                $_SESSION['auth'] = true;
                 $this->redirect('welcome');
             } else {
-                $error_msg = "Invalid username or password";
+                $error_msg = 'Invalid username or password';
                 $_SESSION['error'] = $error_msg;
                 $this->redirect('home');
             }

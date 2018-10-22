@@ -3,7 +3,30 @@ session_start();
 include "header.phtml"
  ?>
  <!---------- Body starts-------------------->
+<script type = "text/javascript">
+    function showResult(str) {
 
+        if (str.length==0) {
+            document.getElementById("livesearch").innerHTML="";
+            document.getElementById("livesearch").style.border="0px";
+            return;
+        }
+
+        xmlhttp=new XMLHttpRequest();
+
+
+        xmlhttp.onreadystatechange=function() {
+            if (this.readyState==4 && this.status==200) {
+                document.getElementById("livesearch").innerHTML=this.responseText;
+                document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+            }
+        }
+
+        xmlhttp.open("GET","livesearch.php?q="+str,true);
+
+        xmlhttp.send();
+    }
+</script>
 
 <div id="wrapper">
 	<!---------- Header Wrapper starts --------------->
@@ -35,8 +58,12 @@ include "header.phtml"
 			<div class = "title">
 			<h2>Search Menu</h2>
 			</div>
-			<p> Search <input type="search" name="search" id="search" size="60" placeholder="e.g. Hammer"></p>
+            <form>
+			<p> Search <input type="text" size="60" onkeyup="showResult(this.value)"></p>
 			<br>
+
+            <div id="livesearch"> Here </div>
+            </form>
 			<br>
 			<p><b>Search Results</b></p>
 			<div id ="result">

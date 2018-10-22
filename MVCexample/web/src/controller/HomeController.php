@@ -1,6 +1,6 @@
 <?php
 namespace agilman\a2\controller;
-
+session_start();
 use agilman\a2\view\View;
 /**
  * Class HomeController
@@ -15,8 +15,13 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
-        $view = new View('userHome');
-        echo $view->render();
+        if($_SESSION['auth']) {
+            $view = new View('userHome');
+            echo $view->render();
+        }else{
+            session_unset();
+            $this->redirect('home');
+        }
     }
 
      /**
@@ -24,8 +29,13 @@ class HomeController extends Controller
      */
     public function browseIndexAction()
     {
-        $view = new View('browsePage');
-        echo $view->render();
+        if($_SESSION['auth']) {
+            $view = new View('browsePage');
+            echo $view->render();
+        }else{
+            session_unset();
+            $this->redirect('home');
+        }
     }
 
 
@@ -34,7 +44,12 @@ class HomeController extends Controller
      */
     public function searchIndexAction()
     {
-        $view = new View('searchPage');
-        echo $view->render();
+        if($_SESSION['auth']) {
+            $view = new View('searchPage');
+            echo $view->render();
+        }else{
+            session_unset();
+            $this->redirect('home');
+        }
     }
 }

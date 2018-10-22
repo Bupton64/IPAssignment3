@@ -95,5 +95,17 @@ $collection->attachRoute(
     )
 );
 
+
+$collection->attachRoute(
+    new Route(
+        '/livesearch.php',
+        array(
+            '_controller' => 'agilman\a2\controller\SearchController::liveSearchAction',
+            'methods' => 'GET',
+            'name' => 'liveSearch'
+        )
+    )
+);
+
 $router = new Router($collection);
 $router->setBasePath('/');
