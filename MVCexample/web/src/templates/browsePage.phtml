@@ -6,6 +6,33 @@ session_start();
  include "header.phtml" 
  ?>
 <!---------- Body starts --------------->
+<script type = "text/javascript">
+	 function showBrowse(str) {
+
+        if (str.length==0) {
+            document.getElementById("livesearch").innerHTML="";
+            document.getElementById("livesearch").style.border="0px";
+            return;
+        }
+
+        xmlhttp=new XMLHttpRequest();
+
+
+        xmlhttp.onreadystatechange=function() {
+            if (this.readyState==4 && this.status==200) {
+                document.getElementById("browseResult").innerHTML=this.responseText;
+
+            }
+        }
+
+        xmlhttp.open("GET","livesearch.php?stock="+str,true);
+
+        xmlhttp.send();
+    }
+
+
+</script>
+
 
 <div id="wrapper">
 	<!---------- Header Wrapper starts --------------->
@@ -37,6 +64,16 @@ session_start();
 			<div class = "title">
 			<h2>Browse Menu</h2>
 			</div>
+			<div id = "browsePanel">
+				
+				<input type='checkbox'	name='PowerTools'>
+
+			</div>
+
+			<div id = browseResults>
+
+
+			</div> 
 			<br>
 
 			<br>
