@@ -2,7 +2,7 @@
 namespace agilman\a2\controller;
 session_start();
 use agilman\a2\view\View;
-use agilman\a2\model\ProductCollectionModel;
+use agilman\a2\model\BrowseProductCollectionModel;
 /**
  * Class BrowseController
  *
@@ -20,24 +20,25 @@ class BrowseController extends Controller
         $powerT = $_GET['powerT'];
         $paintB = $_GET['paintB'];
         $spades = $_GET['spades'];
-        if($hammers || $powerT || $paintB || $spades){ // ensure at least one product is being searched for
+        if($hammers == 'true' || $powerT == 'true' || $paintB == 'true' || $spades == 'true'){ // ensure at least one product is being searched for
             $this->response = $this->response."<table><tr><th>SKU</th><th>Name</th><th>Cost</th><th>Category</th><th>Quantity</th></tr>";
-            if($hammers){
+            if($hammers == 'true'){
                 $this->response = $this->response.$this->collectToolType($stock, "Hammers");
             }
-            if($powerT){
+            if($powerT == 'true'){
                 $this->response = $this->response.$this->collectToolType($stock, "Power tools");
             }
-            if($paintB){
+            if($paintB == 'true'){
                 $this->response = $this->response.$this->collectToolType($stock, "Paint Brushes");
             }
-            if($spades){
+            if($spades == 'true'){
                 $this->response = $this->response.$this->collectToolType($stock, "spades");
             }
             $this->response = $this->response."</table>";
         } else {
             $this->response = "No selection criteria.";
         }
+        echo $this->response;
     }
 
     //NOTE Collection is a debug line

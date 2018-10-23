@@ -1,6 +1,7 @@
 <?php
 namespace agilman\a2\model;
 
+
 /**
  * Class AccountCollectionModel
  *
@@ -24,7 +25,7 @@ class BrowseProductCollectionModel extends Model
     public function __construct($tools, $stock)
     {
         parent::__construct();
-        if ($stock) {
+        if ($stock == 'true') {
             if (!$result = $this->db->query("SELECT * FROM `product` LEFT JOIN `category` 
                                              ON `category`.`id` = `product`.`category`
                                              WHERE `category`.`name` = '$tools' 

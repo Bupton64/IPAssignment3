@@ -2,7 +2,7 @@
 namespace agilman\a2\controller;
 session_start();
 use agilman\a2\view\View;
-use agilman\a2\model\ProductCollectionModel;
+use agilman\a2\model\SearchProductCollectionModel;
 /**
  * Class HomeController
  *
