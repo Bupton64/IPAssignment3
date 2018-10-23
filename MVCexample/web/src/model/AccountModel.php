@@ -143,7 +143,7 @@ class AccountModel extends Model
         $name = $this->name ?? "NULL";
         $username = $this->username ?? "NULL";
         $email= $this->email ?? "NULL";
-        $password = $this->username ?? "NULL";
+        $password = $this->password ?? "NULL";
         if (!isset($this->id)) {
             // New account - Perform INSERT
             $password = password_hash($password, PASSWORD_BCRYPT);
@@ -164,6 +164,7 @@ class AccountModel extends Model
             return false;
         }
         $result = $result->fetch_assoc();
+        error_log("password entered was ".$pass);
         if(password_verify($pass, $result['password'])){
             return true;
         } else {
