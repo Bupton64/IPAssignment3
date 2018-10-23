@@ -11,33 +11,53 @@ use agilman\a2\model\ProductCollectionModel;
  */
 class BrowseController extends Controller
 {
-    public function displayBrowse(){
+    private $response = "";
+
+    public function browseAction(){
         // Need to build a list of products to display via queries.
         $stock = $_GET['stock'];
         $hammers = $_GET['hammer'];
         $powerT = $_GET['powerT'];
         $paintB = $_GET['paintB'];
         $spades = $_GET['spades'];
-
+        if($hammers || $powerT || $paintB || $spades){ // ensure at least one product is being searched for
+            $this->response = $this->response."<table><tr><th>SKU</th><th>Name</th><th>Cost</th><th>Category</th><th>Quantity</th></tr>";
+            if($hammers){
+                $this->response = $this->response.$this->collectToolType($stock, "Hammers");
+            }
+            if($powerT){
+                $this->response = $this->response.$this->collectToolType($stock, "Power tools");
+            }
+            if($paintB){
+                $this->response = $this->response.$this->collectToolType($stock, "Paint Brushes");
+            }
+            if($spades){
+                $this->response = $this->response.$this->collectToolType($stock, "spades");
+            }
+            $this->response = $this->response."</table>";
+        } else {
+            $this->response = "No selection criteria.";
+        }
     }
 
-    public function collectToolType($tool){
-        if($hammers){
-            error_log("Trying to collect hammers");
-            if($stock){
-
-            } else{
-
-            }
+    //NOTE Collection is a debug line
+    public function collectToolType($stock, $tool){
+        error_log("Trying to collect...".$tool);
+        if($stock){
+            $tools = new BrowseProductCollectionModel($tool, $stock);
+        } else{
+            $tools = new BrowseProductCollectionModel($tool, $stock);
         }
+        $category = $tools->getProducts();
+        $result = $this->format($category);
+        return $result;
     }
 
     public function format($products){
-        $response = "<table><tr><th>SKU</th><th>Name</th><th>Cost</th><th>Category</th><th>Quantity</th></tr>";
+        $r = "";
         foreach ($products as $product){
-            $response = $response."<tr><td>".$product->getSku()."</td><td>".$product->getName()."</td><td>".$product->getCost()."</td><td>".$product->getCategory()."</td><td>".$product->getQuantity()."</td></tr>";
+            $r = $r."<tr><td>".$product->getSku()."</td><td>".$product->getName()."</td><td>".$product->getCost()."</td><td>".$product->getCategory()."</td><td>".$product->getQuantity()."</td></tr>";
         }
-        $response = $response.'</table>';
-        return $response;
+        return $r;
     }
 }
