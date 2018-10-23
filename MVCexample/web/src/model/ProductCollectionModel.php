@@ -27,7 +27,11 @@ class ProductCollectionModel extends Model
 
 
 
-        if(!$result = $this->db->query("SELECT * FROM `product` WHERE `name` LIKE '%{$q}%';")){
+        if(!$result = $this->db->query("SELECT * FROM `product` LEFT JOIN `category` 
+                                        ON `category`.`id` = `product`.`category` 
+                                        WHERE `product`.`name` LIKE '%{$q}%' 
+                                        OR `SKU` LIKE '%{$q}%' 
+                                        OR `category`.`name` LIKE '%{$q}%';")){
             //add throw
         }
         error_log("hint num rows is ".$result->num_rows);
