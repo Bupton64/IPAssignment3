@@ -58,7 +58,5 @@ class HomeController extends Controller
         $username = $_GET["q"];
         $a = new AccountModel();
         echo $a->findName($username);
-
-
     }
 }
