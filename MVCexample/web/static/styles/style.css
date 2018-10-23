@@ -221,6 +221,32 @@ body{
 	border-radius: 1em;
 	text-transform: uppercase;
 }
+/*   Browse Page */
+
+#browse-panel
+{
+	width: 15%;
+	height: 50%;
+}
+
+#browse-panel legend {
+    background-color: #A0A0A0;
+    color: #fff;
+    padding: 6px 6px;
+}
+
+#browse-panel .filter-option
+{
+	float: left;
+}
+
+#browse-panel input {
+    margin: .5rem;
+
+}
+
+
+
 
 #content
 {
