@@ -13,6 +13,14 @@ class ProductCollectionModel extends Model
 
     private $N;
 
+    /**
+     * @return mixed
+     */
+    public function getN()
+    {
+        return $this->N;
+    }
+
     public function __construct($q)
     {
         parent::__construct();

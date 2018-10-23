@@ -8,6 +8,7 @@
 	<div id="headerWrapper">
 		<div id= "header" class="container">
 			<div id= "logo">
+
 				<h1>ToolStocker</h1>
 				</div>
 			
@@ -24,19 +25,27 @@
 			<div class = "title">
 			<h2>Welcome to ToolStocker</h2>
 			</div>
-            <?php
+
+
+
+            <div id = login>
+                <?php
             if($_SESSION['error']){
-                print "<p>Invalid Username or Password </p><br>";
+                print "<p id='login-error'>Invalid Username or Password </p><br>";
                 session_unset();
             }
             ?>
+
 		    <form action = "<?= $linkTo('loginAttempt'); ?>" method="post">
 		        <p>Username: <input type="text" name="username_input" action="" ></p>
 		        <p>Password: <input type="password" name="password_input" action="" ></p>
-		        <input type="submit" value="Login">
+            </div>
+		        <input id="login-button" type="submit" value="Login">
 		    </form>
+
 		    <br> 	
-			<a href=<?= $linkTo('accountCreate'); ?>>Don't have an account? Register here.</a>
+            <p><a id="create-new-account" href=<?= $linkTo('accountCreate'); ?>>Don't have an account? Register here.</a></p>
+
 			<br>
 		</div>
 	</div>

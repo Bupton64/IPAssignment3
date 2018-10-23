@@ -20,15 +20,19 @@ class SearchController extends Controller
         if (strlen($q)>0) {
             $livesearch = new ProductCollectionModel($q);
             $products = $livesearch->getProducts();
-            $result = $this->format($products);
-            echo $result;
+            if($livesearch->getN() == 0){
+                echo "No matches found";
+            } else {
+                $result = $this->format($products);
+                echo $result;
+            }
         }else{
             echo "";
         }
     }
 
     public function format($products){
-        $response = "<table><tr><th>SKU</th><th>Name</th><th>cost</th><th>category</th><th>quantity</th></tr>";
+        $response = "<table><tr><th>SKU</th><th>Name</th><th>Cost</th><th>Category</th><th>Quantity</th></tr>";
         foreach ($products as $product){
             $response = $response."<tr><td>".$product->getSku()."</td><td>".$product->getName()."</td><td>".$product->getCost()."</td><td>".$product->getCategory()."</td><td>".$product->getQuantity()."</td></tr>";
         }

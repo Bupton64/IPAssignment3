@@ -5,6 +5,48 @@
 
 <?php include "header.phtml" ?>
 <!---------- Body starts --------------->
+<script type = "text/javascript">
+    function validateForm()
+    {
+        var password = document.forms["registration"]["password"].value;
+        console.log(password);
+        var password_confirm = document.forms["registration"]["password_confirm"].value;
+        console.log(password_confirm);
+
+        if(password !== password_confirm){
+            alert("Passwords do not match!");
+            return false;
+        }
+
+        get(function(){
+            myVar = this.responseText;
+            if(myVar === 'true'){
+                document.forms['registration'].submit();
+            } else{
+                alert("Username already exists");
+            }
+        })
+        return false;
+    }
+
+    function get(callback) {
+        xmlhttp = new XMLHttpRequest();
+        var username = document.forms["registration"]["username"].value;
+        xmlhttp.open("GET", "registrationValidation.php?q=" + username, true);
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                // defensive check
+                if (typeof callback === "function") {
+                    // apply() sets the meaning of "this" in the callback
+                    callback.apply(xmlhttp);
+                }
+            }
+        };
+        xmlhttp.send();
+    }
+
+</script>
+
 
 <div id="wrapper">
 	<!---------- Header Wrapper starts --------------->
@@ -28,14 +70,15 @@
 			<h2>Registration Form</h2>
 			</div>
 		   <div id="registration">
-        <form method="POST" action="<?= $linkTo('accountCreated'); ?>" >
-            <p>Name: <input type="text" placeholder="Name" name="name" required></p>
-            <p>Username: <input type="text" placeholder="Username" name="username" required></p>
-            <p>Email: <input type="text" placeholder="Email" name="email" required></p>
-            <p>Password: <input type="password" placeholder="Password" name="password" required></p>
-            <p>Confirm Password: <input type="password" placeholder="Password" name="password_confirm" required></p>
+        <form method="POST" name="registration" action="<?= $linkTo('accountCreated'); ?>" >
+            <p>Name: <input type="text" placeholder="Name" name="name" size="40" required></p>
+            <p>Username: <input type="text" placeholder="Username"  name="username" size="40" required pattern="^[a-zA-Z0-9]+$"></p>
+            <p>Email: <input type="text" placeholder="Email" name="email" size="40" required></p>
+            <p>Password: <input type="password" placeholder="Password" name="password" size="40" required pattern="^(?=.*[A-Z])([a-zA-Z0-9]{7,15})$"></p>
+            <p>Confirm Password: <input type="password" placeholder="Password" name="password_confirm" size="40" required pattern="^(?=.*[A-Z])([a-zA-Z0-9]{7,15})$"></p>
             </div>
-            <input type="submit" value="Register" >
+            <p type="hidden" id="validate"></p>
+            <input id="submit-registration" type="submit" value="Register" onclick="return validateForm()" >
         </form>
 		    <br> 	
 			

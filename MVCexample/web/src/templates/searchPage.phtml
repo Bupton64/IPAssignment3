@@ -4,6 +4,7 @@ include "header.phtml"
  ?>
  <!---------- Body starts-------------------->
 <script type = "text/javascript">
+
     function showResult(str) {
 
         if (str.length==0) {
@@ -18,7 +19,7 @@ include "header.phtml"
         xmlhttp.onreadystatechange=function() {
             if (this.readyState==4 && this.status==200) {
                 document.getElementById("livesearch").innerHTML=this.responseText;
-                document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+
             }
         }
 
@@ -61,17 +62,11 @@ include "header.phtml"
             <form>
 			<p> Search <input type="text" size="60" onkeyup="showResult(this.value)"></p>
 			<br>
+                <p><b>Search Results</b></p>
+                <div id="livesearch" > </div>
 
-            <div id="livesearch"> Here </div>
             </form>
 			<br>
-			<p><b>Search Results</b></p>
-			<div id ="result">
-			<table>
-				<!--- Fill in Search Results here -->
-			</table>
-			</div>
-			
 		</div>
 	</div>
 	<!--- Content Ends here ----------->

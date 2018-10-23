@@ -17,6 +17,9 @@ class ProductModel extends Model
     private $id;
     private $sku;
     private $name;
+    private $cost;
+    private $category;
+    private $quantity;
 
     /**
      * @return mixed
@@ -113,9 +116,7 @@ class ProductModel extends Model
     {
         $this->quantity = $quantity;
     }
-    private $cost;
-    private $category;
-    private $quantity;
+
 
 
     /**

@@ -107,5 +107,16 @@ $collection->attachRoute(
     )
 );
 
+$collection->attachRoute(
+    new Route(
+        '/registrationValidation.php',
+        array(
+            '_controller' => 'agilman\a2\controller\HomeController::registrationAction',
+            'methods' => 'GET',
+            'name' => 'registration'
+        )
+    )
+);
+
 $router = new Router($collection);
 $router->setBasePath('/');

@@ -2,6 +2,7 @@
 namespace agilman\a2\controller;
 session_start();
 use agilman\a2\view\View;
+use agilman\a2\model\AccountModel;
 /**
  * Class HomeController
  *
@@ -38,7 +39,6 @@ class HomeController extends Controller
         }
     }
 
-
      /**
      * Link to Search
      */
@@ -51,5 +51,14 @@ class HomeController extends Controller
             session_unset();
             $this->redirect('home');
         }
+    }
+
+    public function registrationAction()
+    {
+        $username = $_GET["q"];
+        $a = new AccountModel();
+        echo $a->findName($username);
+
+
     }
 }

@@ -119,7 +119,6 @@ class AccountModel extends Model
      */
     public function load($id)
     {
-
         if (!$result = $this->db->query("SELECT * FROM `account` WHERE `id` = $id;")) {
             throw new \mysqli_sql_exception($this->db->error, $this->db->errno);
         }
@@ -129,7 +128,6 @@ class AccountModel extends Model
         $this->email = $result['email'];
         $this->password = $result['password'];
         $this->id = $id;
-
         return $this;
     }
 
@@ -224,5 +222,18 @@ class AccountModel extends Model
             //throw new ...
         }
         return $this;
+    }
+
+    public function findName($username)
+    {
+        $username = mysqli_real_escape_string($this->db, $username);
+        if(!$result = $this->db->query("SELECT * FROM `account` WHERE `account`.`username` = '$username';")){
+            // throw some exception.
+        }
+        if($result->num_rows == 0){
+            return 'true'; // If no other user exists with this username, return true
+        } else {
+            return 'false';
+        }
     }
 }

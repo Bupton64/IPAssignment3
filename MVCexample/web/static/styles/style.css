@@ -58,6 +58,13 @@ body{
 		background: #333333;
 	}
 
+#logo img
+{
+	height:5em;
+	width:10em;
+	float: right;
+}
+
 #logo h1
 	{
 		text-align: center;
@@ -113,13 +120,94 @@ body{
 	text-decoration: none;
 }
 
-#menuBar a:hover {
+#menuBar a:hover
+{
 	background: #42bcf4;
 }
 
-#registration {
+#create-new-account
+{
+	letter-spacing: 1px;
+	font-size: 1.1em;
+	font-weight: 400;
+}
+
+#login
+{
+
+	letter-spacing: 1px;
+	font-size: 1.4em;
+	font-weight: 400;
 	text-align: left;
 	padding-left: 35%;
+}
+
+#login-error
+{
+	color: crimson;
+	font-weight: 600;
+	margin-left: 4em;
+}
+
+#login input
+{
+	letter-spacing: 1px;
+	font-size: 1.1em;
+	font-weight: 400;
+	float: right;
+	margin-right: 20em;
+
+
+}
+
+#login-button
+{
+
+	margin-top: 25px;
+	height: 2.5em;
+	width: 8em;
+	letter-spacing: 1px;
+	font-size: 1.7em;
+	font-weight: 400;
+	color: #FFFFFF;
+	background: #333333;
+	border-radius: 1em;
+	text-transform: uppercase;
+}
+
+#registration
+{
+
+	letter-spacing: 1px;
+	font-size: 1.4em;
+	font-weight: 400;
+	text-align: left;
+	padding-left: 30%;
+}
+
+#registration input
+{
+	letter-spacing: 1px;
+	font-size: 1.1em;
+	font-weight: 400;
+	float: right;
+	margin-right: 10em;
+
+
+}
+
+#submit-registration
+{
+	margin-top: 40px;
+	height: 2.5em;
+	width: 8em;
+	letter-spacing: 1px;
+	font-size: 1.7em;
+	font-weight: 400;
+	color: #FFFFFF;
+	background: #333333;
+	border-radius: 1em;
+	text-transform: uppercase;
 }
 
 #content
@@ -135,10 +223,56 @@ body{
 }
 
 #footer
-	{
-		color: #ADADAD;
-		height: 10px;
-		padding: 3em 0em;
-		text-align: center;
+{
+	color: #ADADAD;
+	height: 10px;
+	padding: 3em 0em;
+	text-align: center;
 
-	}
+}
+
+
+<!-- LiveSearch  !>
+#livesearch
+{
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+
+	margin-left: 20em;
+	margin-right: 20em;
+}
+
+
+
+#livesearch table
+{
+	flex-grow: 1;
+	border-collapse: collapse;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#livesearch table, td, th
+{
+	border-bottom: 1px solid black;
+}
+
+#livesearch td
+{
+	padding-top: 1em;
+	padding-bottom: 1em;
+	padding-left: 3.6em;
+	padding-right: 3.6em;
+}
+
+#livesearch th
+{
+	padding:1em;
+
+}
+
+#livesearch tr:not(:first-child):hover
+{
+	background: #C5C5C5;
+}
