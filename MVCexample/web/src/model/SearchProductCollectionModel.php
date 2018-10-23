@@ -7,7 +7,7 @@ namespace agilman\a2\model;
  * @package agilman/a2
  * @author  Andrew Gilman <a.gilman@massey.ac.nz>
  */
-class ProductCollectionModel extends Model
+class SearchProductCollectionModel extends Model
 {
     private $productIds;
 
@@ -24,8 +24,6 @@ class ProductCollectionModel extends Model
     public function __construct($q)
     {
         parent::__construct();
-
-
 
         if(!$result = $this->db->query("SELECT * FROM `product` LEFT JOIN `category` 
                                         ON `category`.`id` = `product`.`category` 

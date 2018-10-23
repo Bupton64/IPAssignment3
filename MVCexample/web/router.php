@@ -118,5 +118,16 @@ $collection->attachRoute(
     )
 );
 
+$collection->attachRoute(
+    new Route(
+        '/browseQuery.php',
+        array(
+            '_controller' => 'agilman\a2\controller\BrowseController::browseAction',
+            'methods' => 'GET',
+            'name' => 'browseQuery'
+        )
+    )
+);
+
 $router = new Router($collection);
 $router->setBasePath('/');
