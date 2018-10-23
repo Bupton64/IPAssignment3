@@ -9,9 +9,10 @@
     function validateForm()
     {
         var password = document.forms["registration"]["password"].value;
-        console.log(password);
         var password_confirm = document.forms["registration"]["password_confirm"].value;
-        console.log(password_confirm);
+
+        var submitButton = document.getElementById('submit-handle');
+
 
         if(password !== password_confirm){
             alert("Passwords do not match!");
@@ -21,8 +22,8 @@
         get(function(){
             myVar = this.responseText;
             if(myVar === 'true'){
-              
-               $('#submit_handle').click();
+
+               submitButton.click();
             } else{
                 alert("Username already exists");
             }
@@ -79,8 +80,8 @@
             <p>Confirm Password: <input type="password" placeholder="Password" name="password_confirm" size="40" required pattern="^(?=.*[A-Z])([a-zA-Z0-9]{7,15})$" title="Must contain at least one uppercase letter, and be between 7-15 characters" ></p>
             </div>
             <p type="hidden" id="validate"></p>
-            <button id="submit-registration" type="submit" value="Register" onclick="return validateForm()" >Register</button> 
-            <input id="submit_handle" type="submit" style="display: none">
+            <button id="submit-registration" value="Register" onclick="return validateForm()">Register</button> 
+            <input id="submit-handle" type="submit" style="display: none">
         </form>
 		    <br> 	
 			
