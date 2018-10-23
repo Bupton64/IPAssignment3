@@ -64,8 +64,8 @@ class Model
             }
 
             // Sample accounts
-            $password_bob = password_hash("bobspassword", PASSWORD_BCRYPT);
-            $password_mary = password_hash("maryspassword", PASSWORD_BCRYPT);
+            $password_bob = password_hash("Bobspassword", PASSWORD_BCRYPT);
+            $password_mary = password_hash("Maryspassword", PASSWORD_BCRYPT);
             if (!$this->db->query(
                 "INSERT INTO `account` VALUES (NULL,'Bob', 'BobTool', 'bob@tools.com', '$password_bob'), 
                                                     (NULL,'Mary', 'MaryTool', 'mary@tools.com', '$password_mary');"
@@ -98,7 +98,7 @@ class Model
                 "INSERT INTO `category` VALUES (NULL,'Hammers'), 
                                                     (NULL,'Spades'),
                                                     (NULL, 'Paint Brushes'),
-                                                    (NULL, 'Power tools');"
+                                                    (NULL, 'Power Tools');"
             )) {
                 throw new \mysqli_sql_exception($this->db->error, $this->db->errno);
                 error_log("Failed creating sample category data!", 0);

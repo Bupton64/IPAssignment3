@@ -136,10 +136,14 @@ class ProductModel extends Model
         $this->name = $result['name'];
         $this->sku = $result['SKU'];
         $this->cost = $result['cost'];
-        $this->category = $result['category'];
         $this->quantity = $result['stock_quantity'];
+        $category_id = $result['category'];
+        if(!$result = $this->db->query("SELECT `name` FROM `category` WHERE `id` = $category_id;")){
+            throw new \mysqli_sql_exception($this->db->error, $this->db->errno);
+        }
+        $result = $result->fetch_assoc();
+        $this->category = $result['name'];;
         $this->id = $id;
-
         return $this;
     }
 
