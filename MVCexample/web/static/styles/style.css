@@ -125,8 +125,15 @@ body{
 	background: #42bcf4;
 }
 
+#hyperlink
+{
+	padding-top: 1%;
+	text-align: center;
+}
+
 #create-new-account
 {
+
 	letter-spacing: 1px;
 	font-size: 1.1em;
 	font-weight: 400;
@@ -154,7 +161,7 @@ body{
 	letter-spacing: 1px;
 	font-size: 1.1em;
 	font-weight: 400;
-	float: right;
+	
 	margin-right: 20em;
 
 
@@ -162,7 +169,9 @@ body{
 
 #login-button
 {
-
+	margin-left: 3em;
+	margin-right: auto;
+	
 	margin-top: 25px;
 	height: 2.5em;
 	width: 8em;
