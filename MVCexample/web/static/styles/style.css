@@ -223,8 +223,12 @@ body{
 }
 /*   Browse Page */
 
+
+
 #browse-panel
 {
+	float: left;
+	display: inline-block;
 	width: 15%;
 	height: 50%;
 }
@@ -238,11 +242,49 @@ body{
 #browse-panel .filter-option
 {
 	float: left;
+	display: block;
 }
 
 #browse-panel input {
     margin: .5rem;
 
+}
+
+#browse-result
+{
+	display:inline-block;
+}
+
+#browse-result table
+{
+	flex-grow: 1;
+	border-collapse: collapse;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#browse-result table, td, th
+{
+	border-bottom: 1px solid black;
+}
+
+#browse-result td
+{
+	padding-top: 1em;
+	padding-bottom: 1em;
+	padding-left: 3.6em;
+	padding-right: 3.6em;
+}
+
+#browse-result th
+{
+	padding:1em;
+
+}
+
+#browse-result tr:not(:first-child):hover
+{
+	background: #C5C5C5;
 }
 
 
@@ -270,7 +312,7 @@ body{
 }
 
 
-<!-- LiveSearch  !>
+/*   LiveSearch  */
 #livesearch
 {
 	display: flex;
