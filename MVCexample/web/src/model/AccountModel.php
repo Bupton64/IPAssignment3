@@ -96,6 +96,22 @@ class AccountModel extends Model
         return $this->password;
     }
 
+    /**
+     * @param string $username, the username to set the account to
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
+    /**
+     * @param string $password, the password to assign to the account.
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
 
     /**
      * Loads account information from the database

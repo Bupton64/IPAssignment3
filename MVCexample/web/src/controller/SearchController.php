@@ -20,8 +20,12 @@ class SearchController extends Controller
     {
         $q=$_GET["q"];
         if (strlen($q)>0) {
-            $livesearch = new SearchProductCollectionModel($q);
-            $products = $livesearch->getProducts();
+            try {
+                $livesearch = new SearchProductCollectionModel($q);
+                $products = $livesearch->getProducts();
+            } catch (\Exception $e){
+                $this->redirect('error');
+            }
             if($livesearch->getN() == 0){
                 echo "No matches found";
             } else {

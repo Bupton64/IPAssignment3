@@ -57,8 +57,12 @@ class BrowseController extends Controller
      * @return string $result, The HTML formatted string to be collated as part of a table response.
      */
     public function collectToolType($stock, $tool){
-        $tools = new BrowseProductCollectionModel($tool, $stock);
-        $category = $tools->getProducts();
+        try {
+            $tools = new BrowseProductCollectionModel($tool, $stock);
+            $category = $tools->getProducts();
+        } catch (\Exception $e){
+            $this->redirect('error');
+        }
         $result = $this->format($category);
         return $result;
     }
