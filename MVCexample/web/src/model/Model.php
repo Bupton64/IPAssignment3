@@ -65,8 +65,10 @@ class Model
             // Sample accounts
             $password_bob = password_hash("Bobspassword", PASSWORD_BCRYPT);
             $password_mary = password_hash("Maryspassword", PASSWORD_BCRYPT);
+            $password_tim = password_hash("TheToolman", PASSWORD_BCRYPT);
             if (!$this->db->query(
-                "INSERT INTO `account` VALUES (NULL,'Bob', 'BobTool', 'bob@tools.com', '$password_bob'), 
+                "INSERT INTO `account` VALUES (NULL,'Bob', 'BobTool', 'bob@tools.com', '$password_bob'),
+                                                    (NULL, 'Tim Taylor', 'TheToolman', 'timtaylor@toolshed.com', '$password_tim'), 
                                                     (NULL,'Mary', 'MaryTool', 'mary@tools.com', '$password_mary');"
             )) {
                 throw new \mysqli_sql_exception($this->db->error, $this->db->errno);
