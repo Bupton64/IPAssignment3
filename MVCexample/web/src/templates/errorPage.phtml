@@ -1,1 +1,21 @@
-<p>An error occurred.</p>
+<?php
+    include "header.phtml"
+?>
+<!---------- Body starts --------------->
+
+	<div id= "page">
+		
+		<div id = "content">
+			<img src="error.jpeg">
+			<h2>An error occurred.</h2>
+			<p>Click <a href="<?= $linkTo('logout'); ?>">Here</a> to return to login page</p>
+		</div>
+	</div>
+
+	<!--- Content Ends here ----------->
+</div>
+
+
+
+<!---------- Body ends -------------------->
+<?php include "footer.phtml" ?>
