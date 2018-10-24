@@ -103,6 +103,8 @@ class AccountModel extends Model
      * @param int $id Account ID, the id of the account to load
      *
      * @return $this AccountModel
+     *
+     * @throws \mysqli_sql_exception, if the SQL query fails
      */
     public function load($id)
     {
@@ -123,6 +125,8 @@ class AccountModel extends Model
      * Only occurs on account creation, thus no clause for update.
      *
      * @return $this AccountModel
+     *
+     * @throws \mysqli_sql_exception, if the SQL query fails
      */
     public function save()
     {
@@ -152,6 +156,8 @@ class AccountModel extends Model
      * @param $user string, the username submitted by the user
      * @param $pass string, the password submitted by the user
      * @return bool, True if the username is found and the password matches. Otherwise false.
+     *
+     * @throws \mysqli_sql_exception, if the SQL query fails
      */
     public function validateLogin($user, $pass)
     {
@@ -216,12 +222,14 @@ class AccountModel extends Model
      * @return string, really a boolean, but read as a string for use in Javascript, Returns true
      *         if there are no existing accounts with the submitted username meaning a user can register
      *         that name.
+     *
+     * @throws \mysqli_sql_exception, if the SQL query fails
      */
     public function findName($username)
     {
         $username = mysqli_real_escape_string($this->db, $username);
         if(!$result = $this->db->query("SELECT * FROM `account` WHERE `account`.`username` = '$username';")){
-            // throw some exception.
+            throw new \mysqli_sql_exception($this->db->error, $this->db->errno);
         }
         if($result->num_rows == 0){
             return 'true'; // If no other user exists with this username, return true

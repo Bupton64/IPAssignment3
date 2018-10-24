@@ -13,7 +13,6 @@ class Model
 {
     protected $db;
 
-    // is this the best place for these constants?
     const DB_HOST = 'mysql';
     const DB_USER = 'root';
     const DB_PASS = 'root';
