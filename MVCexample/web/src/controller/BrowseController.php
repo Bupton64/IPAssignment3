@@ -45,7 +45,7 @@ class BrowseController extends Controller
             }
             $this->response = $this->response . "</table>";
         } else {
-            $this->response = "No selection criteria.";
+            $this->response = "<p>No selection criteria.</p>";
         }
         echo $this->response;
     }
