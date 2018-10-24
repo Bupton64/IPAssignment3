@@ -52,7 +52,7 @@ $collection->attachRoute(
 
 $collection->attachRoute(
     new Route(
-        '/account/create/',
+        '/register',
         array(
             '_controller' => 'agilman\a2\controller\AccountController::registerAction',
             'methods' => 'GET',
