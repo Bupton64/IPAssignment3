@@ -2,11 +2,13 @@
 namespace agilman\a2\controller;
 session_start();
 $_SESSION['auth'] = false;
-use agilman\a2\model\{AccountModel, AccountCollectionModel};
+use agilman\a2\model\{Model, AccountModel, AccountCollectionModel};
 use agilman\a2\view\View;
 
 /**
  * Class AccountController
+ *
+ * Manages all actions related to a user and their account.
  *
  * @package agilman/a2
  * @author  Andrew Gilman <a.gilman@massey.ac.nz>
@@ -14,22 +16,23 @@ use agilman\a2\view\View;
 class AccountController extends Controller
 {
     /**
-     * Account Index action
+     * Creates a model to ensure sample database is created.
+     *
+     * Displays the login page if no errors occur.
      */
     public function indexAction()
     {
         try {
-            $account = new AccountModel(); // Test statement to create database
+            $model = new Model(); // Statement to test database
         } catch (\Exception $e){
-            // Deal with exception
-            error_log("ya fucked cunt");
+            $this->redirect('error');
         }
         $view = new View('loginPage');
         echo $view->render();
     }
 
     /**
-     * Account Create action
+     * Directs user to the page required for registration
      */
     public function registerAction()
     {
@@ -39,33 +42,34 @@ class AccountController extends Controller
 
 
     /**
-     * Account Create action
+     * Processes a user requests to register a new account
      */
     public function createAction()
     {
         try {
             $account = new AccountModel();
         } catch (\Exception $e){
-            // Direct to error page?
-            error_log("in construct catch", 100);
+            $this->redirect('error');
         }
         $account->setName($_POST['name']);
         $account->setUsername($_POST['username']);
         $account->setEmail($_POST['email']);
         $account->setPassword($_POST['password']);
-        error_log("pre save", 100);
         try {
             $account->save();
         } catch (\Exception $e){
-            // Do stuff
-            error_log("in save catch", 100);
+            $this->redirect('error');
         }
-        error_log("post save", 100);
         //$account->sendConfirmationEmail(); // replace to make zon a happy boi
         $view = new View('accountCreated');
         echo $view->addData('account', $account)->render();
     }
 
+    /**
+     *  Processes a user request to log in to the application
+     *  Validates the login and redirects to the user welcome page
+     *  If successful. Otherwise, returns an error.
+     */
     public function loginAction()
     {
         $entered_username = $_POST["username_input"];
@@ -81,7 +85,7 @@ class AccountController extends Controller
                 $this->redirect('home');
             }
         } catch (\Exception $e){
-            error_log("You threw an exception dummy!", 100);
+            $this->redirect('error');
         }
     }
 
@@ -92,27 +96,5 @@ class AccountController extends Controller
     {
         session_unset();
         $this->redirect('home');
-    }
-
-    /**
-     * Account Delete action
-     *
-     * @param int $id Account id to be deleted
-     */
-    public function deleteAction($id)
-    {
-        (new AccountModel())->load($id)->delete();
-        $view = new View('accountDeleted');
-        echo $view->addData('accountId', $id)->render();
-    }
-    /**
-     * Account Update action
-     *
-     * @param int $id Account id to be updated
-     */
-    public function updateAction($id)
-    {
-        $account = (new AccountModel())->load($id);
-        $account->setName('Joe')->save(); // new name will come from Form data
     }
 }
