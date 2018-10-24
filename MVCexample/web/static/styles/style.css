@@ -258,6 +258,7 @@ body{
 #browse-panel .filter-option
 {
 	float: left;
+	padding: 0.5em 0.5em;
 	display: block;
 }
 
