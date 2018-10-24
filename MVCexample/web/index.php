@@ -1,8 +1,8 @@
 <?php
 /**
- * 159.339 Internet Programming 2017.2
- * Student ID: 99999999
- * Assignment: 2   Date: 01/09/17
+ * 159.339 Internet Programming 2018.2
+ * Student Details: Benjamin Upton (16463710), Zane Lamb (15160640) 
+ * Assignment: 3   Date: 24/10/18
  * System: PHP 7.1
  * Code guidelines: PSR-1, PSR-2
  *
