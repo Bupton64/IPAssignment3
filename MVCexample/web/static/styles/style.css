@@ -5,7 +5,7 @@ html, body {
 body{
 	margin: 0px;
 	padding: 0px;
-	background-image: url("wallpaper.jpg");
+	background-image: url("images/wallpaper.jpg");
 	background-repeat: repeat;
 }
 
@@ -18,7 +18,7 @@ body{
 }
 
 #wrapper{
-	background-image: url("wallpaper.jpg");
+	background-image: url("images/wallpaper.jpg");
 	background-repeat: repeat;
 }
 
@@ -30,6 +30,7 @@ body{
 }
 
 #page {
+	height: 600px;
 	position:  relative;
 	overflow: hidden;
 }
@@ -49,14 +50,14 @@ body{
 /* logo */
 
 #logo 
-	{
-		width: 500px;
-		height: 90px;
-		margin: 0 auto;
-		padding: 2em 0em;
-		text-transform: uppercase;
-		background: #333333;
-	}
+{
+	width: 500px;
+	height: 90px;
+	margin: 0 auto;
+	padding: 2em 0em;
+	text-transform: uppercase;
+	background: #333333;
+}
 
 #logo img
 {
@@ -226,7 +227,7 @@ body{
 #browse
 {
 	width: 99%; 
-	height: 300px	;
+	height: 90%	;
  	margin: 10px auto; 
 	position: relative; 
 	display: inline-block;
@@ -260,10 +261,19 @@ body{
 
 #browse-result
 {
+	overflow-y:scroll;
+
 	width: 90%;
 	height: 80%;
 	float:right;
 	margin-right: 3em;
+
+}
+
+#browse-result p
+{
+	font-weight: 500;
+	font-size: 1.3em;
 
 }
 
@@ -306,10 +316,12 @@ body{
 {
 	float: right;
 	width: 99%;
+	height: 99%;
 }
 #footer-wrapper{
+	position: relative;  
 	width: 100%;
-	margin-top: 170px;
+	margin-top: 0px;
 	background: #0F0F0F;
 	bottom: 0;
 }
@@ -325,19 +337,40 @@ body{
 
 
 /*   LiveSearch  */
+#search
+{
+
+	width: 99%; 
+	height: 70%	;
+ 	margin: 10px auto; 
+
+	position: relative; 
+	display: inline-block;
+}
+
 #search-bar
 {
-	text-align: right;
+
+	margin-left: 19em;
+	margin-right: auto;
+	text-align: center;
+}
+
+#search-bar p
+{
+	
+	font-weight: 600;
 }
 
 #livesearch
 {
-	display: flex;
-	flex-direction: column;
-	text-align: center;
 
-	margin-left: 20em;
-	margin-right: 20em;
+	overflow-y:scroll;
+	width: 90%;
+	height: 350px;
+	float:right;
+	margin-right: 3em;
+
 }
 
 
