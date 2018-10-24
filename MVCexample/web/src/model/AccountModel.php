@@ -199,38 +199,36 @@ class AccountModel extends Model
      * To be completed
      */
     public function sendConfirmationEmail()
-    {
+    { 
         $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
-        try {
-            //Server settings
-            $mail->SMTPDebug = 2;                                 // Enable verbose debug output
-            $mail->isSMTP();                                      // Set mailer to use SMTP
-            $mail->Host = 'smtp1.example.com;smtp2.example.com';  // Specify main and backup SMTP servers
-            $mail->SMTPAuth = true;                               // Enable SMTP authentication
-            $mail->Username = 'user@example.com';                 // SMTP username
-            $mail->Password = 'secret';                           // SMTP password
-            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-            $mail->Port = 587;                                    // TCP port to connect to
+    try {
+        //Server settings
+        $mail->SMTPDebug = false;                                 // Enable verbose debug output
+        $mail->isSMTP();                                      // Set mailer to use SMTP
+        $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+        $mail->SMTPAuth = true;                               // Enable SMTP authentication
+        $mail->Username = 'Toolstocker@gmail.com';                 // SMTP username
+        $mail->Password = 'Bobtool22';                           // SMTP password
+        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+        $mail->Port = 587;                                    // TCP port to connect to
 
-            //Recipients
-            $mail->setFrom('from@example.com', 'Mailer');
-            $mail->addAddress('joe@example.net', 'Joe User');     // Add a recipient
-            $mail->addAddress('ellen@example.com');               // Name is optional
-            $mail->addReplyTo('info@example.com', 'Information');
-            $mail->addBCC('bcc@example.com');
+        //Recipients
+        $mail->setFrom('Toolstocker@gmail.com', 'Toolstocker');
+        $mail->addAddress($this->email, $this->name);     // Add a recipient
+        $mail->addBCC('Toolstocker@gmail.com');
 
-            //Content
-            $mail->isHTML(true);                                  // Set email format to HTML
-            $mail->Subject = 'Account Creation';
-            $mail->Body    = 'Welcome to ToolStocker, Your Account has been <b>Created!</b>.';
-            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+        //Content
+        $mail->isHTML(true);                                  // Set email format to HTML
+        $mail->Subject = 'Toolstocker Account Confirmation';
+        $mail->Body    = 'Welcome to Toolstocker, '.$this->username;
+        $mail->AltBody = 'Welcome to Toolstocker, '.$this->username;
 
-            $mail->send();
-            echo 'Message has been sent';
-        } catch (Exception $e) {
-            echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
-        }
+        $mail->send();
+       // echo 'Message has been sent';
+    } catch (Exception $e) {
+        echo 'Message could not be sent. Mailer Error: ';//, $mail->ErrorInfo;
     }
+}
 
     /***
      * Checks whether an account with the submitted username already exists.

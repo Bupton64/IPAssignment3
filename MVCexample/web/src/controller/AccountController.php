@@ -60,7 +60,7 @@ class AccountController extends Controller
         } catch (\Exception $e) {
             $this->redirect('error');
         }
-        //$account->sendConfirmationEmail(); // replace to make zon a happy boi
+        $account->sendConfirmationEmail(); // replace to make zon a happy boi
         $view = new View('accountCreated');
         echo $view->addData('account', $account)->render();
     }
