@@ -8,34 +8,36 @@ use PHPMailer\PHPMailer\Exception;
 /**
  * Class AccountModel
  *
+ * Contains data and behaviour for the user account.
+ *
  * @package agilman/a2
  * @author  Andrew Gilman <a.gilman@massey.ac.nz>
  */
 class AccountModel extends Model
 {
     /**
-     * @var integer Account ID
+     * @var integer Account ID, holds the unique ID number of the account
      */
     private $id;
     /**
-     * @var string Account Name
+     * @var string Account Name, holds the name of the account holder
      */
     private $name;
     /**
-     * @var
+     * @var string Username, holds the username of the account
      */
     private $username;
     /**
-     * @var
+     * @var string Email, the email address specified by the account holder
      */
     private $email;
     /**
-     * @var
+     * @var string Password, the users password (can only be retrieved in hash form once stored)
      */
     private $password;
 
     /**
-     * @return int Account ID
+     * @return int Account ID, returns the unique ID number
      */
     public function getId()
     {
@@ -43,7 +45,7 @@ class AccountModel extends Model
     }
 
     /**
-     * @return string Account Name
+     * @return string Account Name, returns the name of the account holder
      */
     public function getName()
     {
@@ -51,9 +53,9 @@ class AccountModel extends Model
     }
 
     /**
-     * @param string $name Account name
+     * @param string $name Account name, the name to set
      *
-     * @return $this AccountModel
+     * @return $this AccountModel, the modified object
      */
     public function setName(string $name)
     {
@@ -63,7 +65,7 @@ class AccountModel extends Model
     }
 
     /**
-     * @return mixed
+     * @return string $this->username, the username of the account
      */
     public function getUsername()
     {
@@ -71,15 +73,7 @@ class AccountModel extends Model
     }
 
     /**
-     * @param mixed $username
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-    }
-
-    /**
-     * @return mixed
+     * @return string $this->email, the email address of the user
      */
     public function getEmail()
     {
@@ -87,7 +81,7 @@ class AccountModel extends Model
     }
 
     /**
-     * @param mixed $email
+     * @param string $email, the new email address of a user.
      */
     public function setEmail($email)
     {
@@ -95,25 +89,18 @@ class AccountModel extends Model
     }
 
     /**
-     * @return mixed
+     * @return string $this->password, the users password, once saved the users password will always be hashed.
      */
     public function getPassword()
     {
         return $this->password;
     }
 
-    /**
-     * @param mixed $password
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-    }
 
     /**
      * Loads account information from the database
      *
-     * @param int $id Account ID
+     * @param int $id Account ID, the id of the account to load
      *
      * @return $this AccountModel
      */
@@ -133,17 +120,20 @@ class AccountModel extends Model
 
     /**
      * Saves account information to the database
-     * Currently only occurs on account creation
+     * Only occurs on account creation, thus no clause for update.
      *
      * @return $this AccountModel
      */
     public function save()
     {
-        // NO Sql protection
         $name = $this->name ?? "NULL";
+        $name = mysqli_real_escape_string($this->db, $name);
         $username = $this->username ?? "NULL";
+        $username = mysqli_real_escape_string($this->db, $username);
         $email= $this->email ?? "NULL";
+        $email = mysqli_real_escape_string($this->db, $email);
         $password = $this->password ?? "NULL";
+        $password = mysqli_real_escape_string($this->db, $password);
         if (!isset($this->id)) {
             // New account - Perform INSERT
             $password = password_hash($password, PASSWORD_BCRYPT);
@@ -155,8 +145,18 @@ class AccountModel extends Model
         return $this;
     }
 
+    /***
+     * Checks to see that the username exists and password matches when a user
+     * attempts to log in.
+     *
+     * @param $user string, the username submitted by the user
+     * @param $pass string, the password submitted by the user
+     * @return bool, True if the username is found and the password matches. Otherwise false.
+     */
     public function validateLogin($user, $pass)
     {
+        $user = mysqli_real_escape_string($this->db, $user);
+        $pass = mysqli_real_escape_string($this->db, $pass);
         if(!$result = $this->db->query("SELECT * FROM `account` WHERE `username` = '$user';")){
             throw new \mysqli_sql_exception('Account select failed on login.', 100);
         }
@@ -164,18 +164,16 @@ class AccountModel extends Model
             return false;
         }
         $result = $result->fetch_assoc();
-        error_log("password entered was ".$pass);
         if(password_verify($pass, $result['password'])){
             return true;
         } else {
-            error_log("Did not verify password");
             return false;
         }
     }
 
 
     /**
-     * This function sends a confirmation to users email  when account has been created.
+     * This function sends a confirmation to users email when account has been created.
      * To be completed
      */
     public function sendConfirmationEmail(){
@@ -211,20 +209,14 @@ class AccountModel extends Model
         }
     }
 
-
-    /**
-     * Deletes account from the database
-
-     * @return $this AccountModel
+    /***
+     * Checks whether an account with the submitted username already exists.
+     *
+     * @param $username string, the username to look for in the database
+     * @return string, really a boolean, but read as a string for use in Javascript, Returns true
+     *         if there are no existing accounts with the submitted username meaning a user can register
+     *         that name.
      */
-    public function delete()
-    {
-        if (!$result = $this->db->query("DELETE FROM `account` WHERE `account`.`id` = $this->id;")) {
-            //throw new ...
-        }
-        return $this;
-    }
-
     public function findName($username)
     {
         $username = mysqli_real_escape_string($this->db, $username);
