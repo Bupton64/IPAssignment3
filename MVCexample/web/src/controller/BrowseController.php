@@ -6,15 +6,23 @@ use agilman\a2\model\BrowseProductCollectionModel;
 /**
  * Class BrowseController
  *
+ * Controller to manage the applications browse functionality.
+ *
  * @package agilman/a2
  * @author  Andrew Gilman <a.gilman@massey.ac.nz>
  */
 class BrowseController extends Controller
 {
+    /***
+     * @var string The result to be returned from each browse query.
+     */
     private $response = "";
 
+    /***
+     * Generates a response for a browse query based on a list of selection
+     * Flags available to the user.
+     */
     public function browseAction(){
-        // Need to build a list of products to display via queries.
         $stock = $_GET['stock'];
         $hammers = $_GET['hammer'];
         $powerT = $_GET['powerT'];
@@ -41,19 +49,26 @@ class BrowseController extends Controller
         echo $this->response;
     }
 
-    //NOTE Collection is a debug line
+    /**
+     * Gathers a category of tools and formats them for output.
+     *
+     * @param $stock Bool, Determines whether the user has selected to restrict the query to in stock products only.
+     * @param $tool string, The category of tools to be collected and processed
+     * @return string $result, The HTML formatted string to be collated as part of a table response.
+     */
     public function collectToolType($stock, $tool){
-        error_log("Trying to collect...".$tool);
-        if($stock){
-            $tools = new BrowseProductCollectionModel($tool, $stock);
-        } else{
-            $tools = new BrowseProductCollectionModel($tool, $stock);
-        }
+        $tools = new BrowseProductCollectionModel($tool, $stock);
         $category = $tools->getProducts();
         $result = $this->format($category);
         return $result;
     }
 
+    /**
+     * Formats a list of products for output.
+     *
+     * @param $products BrowseProductCollectionModel, A list of products to be processed
+     * @return string $r, the list of products in an HTML formatted string.
+     */
     public function format($products){
         $r = "";
         foreach ($products as $product){

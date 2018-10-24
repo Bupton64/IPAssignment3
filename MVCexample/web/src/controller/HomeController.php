@@ -6,13 +6,17 @@ use agilman\a2\model\AccountModel;
 /**
  * Class HomeController
  *
+ * Manages general redirection actions in the application.
+ *
+ * Some actions are protected against unauthorized access.
+ *
  * @package agilman/a2
  * @author  Andrew Gilman <a.gilman@massey.ac.nz>
  */
 class HomeController extends Controller
 {
     /**
-     * Link to Welcome
+     * Displays the user welcome page to logged in users
      */
     public function indexAction()
     {
@@ -26,7 +30,7 @@ class HomeController extends Controller
     }
 
      /**
-     * Link to Browse
+     * Displays the Browse page to logged in users
      */
     public function browseIndexAction()
     {
@@ -40,7 +44,7 @@ class HomeController extends Controller
     }
 
      /**
-     * Link to Search
+     * Displays the Search page to logged in users
      */
     public function searchIndexAction()
     {
@@ -53,16 +57,26 @@ class HomeController extends Controller
         }
     }
 
+    /**
+     * Displays the error page.
+     */
     public function errorAction()
     {
         $view = new View('errorPage');
         echo $view->render();
     }
 
+    /**
+     * Manages a request to register a user, checks if the username already exists in the database.
+     */
     public function registrationAction()
     {
         $username = $_GET["q"];
-        $a = new AccountModel();
-        echo $a->findName($username);
+        try {
+            $a = new AccountModel();
+            echo $a->findName($username);
+        } catch (\Exception $e){
+            $this->redirect('error');
+        }
     }
 }

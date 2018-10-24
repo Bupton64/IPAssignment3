@@ -4,7 +4,9 @@ session_start();
 use agilman\a2\view\View;
 use agilman\a2\model\SearchProductCollectionModel;
 /**
- * Class HomeController
+ * Class SearchController
+ *
+ * Controller to manage the applications search functionality.
  *
  * @package agilman/a2
  * @author  Andrew Gilman <a.gilman@massey.ac.nz>
@@ -12,7 +14,7 @@ use agilman\a2\model\SearchProductCollectionModel;
 class SearchController extends Controller
 {
     /**
-     * Link to Welcome
+     * Processes the user search query and generates an appropriate response
      */
     public function liveSearchAction()
     {
@@ -31,6 +33,10 @@ class SearchController extends Controller
         }
     }
 
+    /***
+     * @param $products SearchProductCollectionModel, a list of products to be processed
+     * @return string $response, the HTML formatted table to be sent back to the client.
+     */
     public function format($products){
         $response = "<table><tr><th>SKU</th><th>Name</th><th>Cost</th><th>Category</th><th>Quantity</th></tr>";
         foreach ($products as $product){
