@@ -223,7 +223,10 @@ body{
 }
 /*   Browse Page */
 
-
+#browse
+{
+	position: relative; 
+}
 
 #browse-panel
 {
@@ -231,6 +234,7 @@ body{
 	display: inline-block;
 	width: 15%;
 	height: 50%;
+	position: fixed; 
 }
 
 #browse-panel legend {
@@ -252,6 +256,8 @@ body{
 
 #browse-result
 {
+	width: 95%;
+	float:right;
 	display:inline-block;
 }
 
