@@ -6,7 +6,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 /**
- * Class AccountModel
+ * Class ProductModel
+ *
+ * Contains data and behaviour for any products in the syste,.
  *
  * @package agilman/a2
  * @author  Andrew Gilman <a.gilman@massey.ac.nz>
@@ -14,15 +16,33 @@ use PHPMailer\PHPMailer\Exception;
 class ProductModel extends Model
 {
 
+    /**
+     * @var $id, the unique id of the product
+     */
     private $id;
+    /**
+     * @var $sku, the stock keeping unit of the product
+     */
     private $sku;
+    /**
+     * @var $name, the name of the product
+     */
     private $name;
+    /**
+     * @var $cost, the price of the product
+     */
     private $cost;
+    /**
+     * @var $category, what category the product fits into
+     */
     private $category;
+    /**
+     * @var $quantity, how many of the product is in stock.
+     */
     private $quantity;
 
     /**
-     * @return mixed
+     * @return mixed the unique id of the product
      */
     public function getId()
     {
@@ -30,7 +50,7 @@ class ProductModel extends Model
     }
 
     /**
-     * @param mixed $id
+     * @param mixed $id, the id to set to.
      */
     public function setId($id)
     {
@@ -38,7 +58,7 @@ class ProductModel extends Model
     }
 
     /**
-     * @return mixed
+     * @return mixed, the stock keeping unit of the product
      */
     public function getSku()
     {
@@ -46,7 +66,7 @@ class ProductModel extends Model
     }
 
     /**
-     * @param mixed $sku
+     * @param mixed $sku , the new SKU for the product
      */
     public function setSku($sku)
     {
@@ -54,7 +74,7 @@ class ProductModel extends Model
     }
 
     /**
-     * @return mixed
+     * @return mixed, the name of the product
      */
     public function getName()
     {
@@ -62,7 +82,7 @@ class ProductModel extends Model
     }
 
     /**
-     * @param mixed $name
+     * @param mixed $name, the new name to set the product to
      */
     public function setName($name)
     {
@@ -70,7 +90,7 @@ class ProductModel extends Model
     }
 
     /**
-     * @return mixed
+     * @return mixed, the price of the product
      */
     public function getCost()
     {
@@ -78,7 +98,7 @@ class ProductModel extends Model
     }
 
     /**
-     * @param mixed $cost
+     * @param mixed $cost, the price to set the product to
      */
     public function setCost($cost)
     {
@@ -86,7 +106,7 @@ class ProductModel extends Model
     }
 
     /**
-     * @return mixed
+     * @return mixed, what category the product fits into
      */
     public function getCategory()
     {
@@ -94,7 +114,7 @@ class ProductModel extends Model
     }
 
     /**
-     * @param mixed $category
+     * @param mixed $category, the new category of the product
      */
     public function setCategory($category)
     {
@@ -102,7 +122,7 @@ class ProductModel extends Model
     }
 
     /**
-     * @return mixed
+     * @return mixed, how many of the product is in stock.
      */
     public function getQuantity()
     {
@@ -110,25 +130,24 @@ class ProductModel extends Model
     }
 
     /**
-     * @param mixed $quantity
+     * @param mixed $quantity, the new quantity of the stock.
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
     }
 
-
-
     /**
-     * Loads account information from the database
+     * Loads product information from the database
      *
-     * @param int $id Account ID
+     * @param int $id Product ID, the id of the product to load from the database
      *
-     * @return $this AccountModel
+     * @return $this ProductModel, the modified object.
+     *
+     * @throws \mysqli_sql_exception, if the SQL query fails
      */
     public function load($id)
     {
-
         if (!$result = $this->db->query("SELECT * FROM `product` WHERE `id` = $id;")) {
             throw new \mysqli_sql_exception($this->db->error, $this->db->errno);
         }
@@ -138,19 +157,13 @@ class ProductModel extends Model
         $this->cost = $result['cost'];
         $this->quantity = $result['stock_quantity'];
         $category_id = $result['category'];
-        if(!$result = $this->db->query("SELECT `name` FROM `category` WHERE `id` = $category_id;")){
+        if (!$result = $this->db->query("SELECT `name` FROM `category` WHERE `id` = $category_id;")) {
             throw new \mysqli_sql_exception($this->db->error, $this->db->errno);
         }
         $result = $result->fetch_assoc();
-        $this->category = $result['name'];;
+        $this->category = $result['name'];
+        ;
         $this->id = $id;
         return $this;
     }
-
-
-
-
-
-
-
 }

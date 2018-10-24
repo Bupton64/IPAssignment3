@@ -20,10 +20,10 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
-        if($_SESSION['auth']) {
+        if ($_SESSION['auth']) {
             $view = new View('userHome');
             echo $view->render();
-        }else{
+        } else {
             session_unset();
             $this->redirect('home');
         }
@@ -34,10 +34,10 @@ class HomeController extends Controller
      */
     public function browseIndexAction()
     {
-        if($_SESSION['auth']) {
+        if ($_SESSION['auth']) {
             $view = new View('browsePage');
             echo $view->render();
-        }else{
+        } else {
             session_unset();
             $this->redirect('home');
         }
@@ -48,10 +48,10 @@ class HomeController extends Controller
      */
     public function searchIndexAction()
     {
-        if($_SESSION['auth']) {
+        if ($_SESSION['auth']) {
             $view = new View('searchPage');
             echo $view->render();
-        }else{
+        } else {
             session_unset();
             $this->redirect('home');
         }
@@ -75,7 +75,7 @@ class HomeController extends Controller
         try {
             $a = new AccountModel();
             echo $a->findName($username);
-        } catch (\Exception $e){
+        } catch (\Exception $e) {
             $this->redirect('error');
         }
     }

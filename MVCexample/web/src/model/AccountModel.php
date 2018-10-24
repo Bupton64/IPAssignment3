@@ -96,6 +96,22 @@ class AccountModel extends Model
         return $this->password;
     }
 
+    /**
+     * @param string $username, the username to set the account to
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
+    /**
+     * @param string $password, the password to assign to the account.
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
 
     /**
      * Loads account information from the database
@@ -103,6 +119,8 @@ class AccountModel extends Model
      * @param int $id Account ID, the id of the account to load
      *
      * @return $this AccountModel
+     *
+     * @throws \mysqli_sql_exception, if the SQL query fails
      */
     public function load($id)
     {
@@ -123,6 +141,8 @@ class AccountModel extends Model
      * Only occurs on account creation, thus no clause for update.
      *
      * @return $this AccountModel
+     *
+     * @throws \mysqli_sql_exception, if the SQL query fails
      */
     public function save()
     {
@@ -130,7 +150,7 @@ class AccountModel extends Model
         $name = mysqli_real_escape_string($this->db, $name);
         $username = $this->username ?? "NULL";
         $username = mysqli_real_escape_string($this->db, $username);
-        $email= $this->email ?? "NULL";
+        $email = $this->email ?? "NULL";
         $email = mysqli_real_escape_string($this->db, $email);
         $password = $this->password ?? "NULL";
         $password = mysqli_real_escape_string($this->db, $password);
@@ -152,19 +172,21 @@ class AccountModel extends Model
      * @param $user string, the username submitted by the user
      * @param $pass string, the password submitted by the user
      * @return bool, True if the username is found and the password matches. Otherwise false.
+     *
+     * @throws \mysqli_sql_exception, if the SQL query fails
      */
     public function validateLogin($user, $pass)
     {
         $user = mysqli_real_escape_string($this->db, $user);
         $pass = mysqli_real_escape_string($this->db, $pass);
-        if(!$result = $this->db->query("SELECT * FROM `account` WHERE `username` = '$user';")){
+        if (!$result = $this->db->query("SELECT * FROM `account` WHERE `username` = '$user';")) {
             throw new \mysqli_sql_exception('Account select failed on login.', 100);
         }
-        if($result->num_rows == 0){
+        if ($result->num_rows == 0) {
             return false;
         }
         $result = $result->fetch_assoc();
-        if(password_verify($pass, $result['password'])){
+        if (password_verify($pass, $result['password'])) {
             return true;
         } else {
             return false;
@@ -176,7 +198,8 @@ class AccountModel extends Model
      * This function sends a confirmation to users email when account has been created.
      * To be completed
      */
-    public function sendConfirmationEmail(){
+    public function sendConfirmationEmail()
+    {
         $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
         try {
             //Server settings
@@ -216,14 +239,16 @@ class AccountModel extends Model
      * @return string, really a boolean, but read as a string for use in Javascript, Returns true
      *         if there are no existing accounts with the submitted username meaning a user can register
      *         that name.
+     *
+     * @throws \mysqli_sql_exception, if the SQL query fails
      */
     public function findName($username)
     {
         $username = mysqli_real_escape_string($this->db, $username);
-        if(!$result = $this->db->query("SELECT * FROM `account` WHERE `account`.`username` = '$username';")){
-            // throw some exception.
+        if (!$result = $this->db->query("SELECT * FROM `account` WHERE `account`.`username` = '$username';")) {
+            throw new \mysqli_sql_exception($this->db->error, $this->db->errno);
         }
-        if($result->num_rows == 0){
+        if ($result->num_rows == 0) {
             return 'true'; // If no other user exists with this username, return true
         } else {
             return 'false';

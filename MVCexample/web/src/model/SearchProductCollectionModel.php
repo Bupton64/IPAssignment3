@@ -42,11 +42,11 @@ class SearchProductCollectionModel extends Model
     {
         parent::__construct();
 
-        if(!$result = $this->db->query("SELECT * FROM `product` LEFT JOIN `category` 
+        if (!$result = $this->db->query("SELECT * FROM `product` LEFT JOIN `category` 
                                         ON `category`.`id` = `product`.`category` 
                                         WHERE `product`.`name` LIKE '%{$q}%' 
                                         OR `SKU` LIKE '%{$q}%' 
-                                        OR `category`.`name` LIKE '%{$q}%';")){
+                                        OR `category`.`name` LIKE '%{$q}%';")) {
             throw new \mysqli_sql_exception($this->db->error, $this->db->errno);
         }
         $this->productIds = array_column($result->fetch_all(), 0);
@@ -66,5 +66,4 @@ class SearchProductCollectionModel extends Model
             yield (new ProductModel())->load($id);
         }
     }
-
 }
