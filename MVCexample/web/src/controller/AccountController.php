@@ -78,6 +78,7 @@ class AccountController extends Controller
             $account = new AccountModel();
             if ($account->validateLogin($entered_username, $entered_password)) {
                 $_SESSION['auth'] = true;
+                $_SESSION['name'] = $entered_username;
                 $this->redirect('welcome');
             } else {
                 $error_msg = 'Invalid username or password';

@@ -21,8 +21,9 @@ class HomeController extends Controller
     public function indexAction()
     {
         if ($_SESSION['auth']) {
+            $name = $_SESSION['name'];
             $view = new View('userHome');
-            echo $view->render();
+            echo $view->addData('name', $name)->render();
         } else {
             session_unset();
             $this->redirect('home');
