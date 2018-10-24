@@ -24,7 +24,7 @@ class AccountController extends Controller
     {
         try {
             $model = new Model(); // Statement to test database
-        } catch (\Exception $e){
+        } catch (\Exception $e) {
             $this->redirect('error');
         }
         $view = new View('loginPage');
@@ -48,7 +48,7 @@ class AccountController extends Controller
     {
         try {
             $account = new AccountModel();
-        } catch (\Exception $e){
+        } catch (\Exception $e) {
             $this->redirect('error');
         }
         $account->setName($_POST['name']);
@@ -57,7 +57,7 @@ class AccountController extends Controller
         $account->setPassword($_POST['password']);
         try {
             $account->save();
-        } catch (\Exception $e){
+        } catch (\Exception $e) {
             $this->redirect('error');
         }
         //$account->sendConfirmationEmail(); // replace to make zon a happy boi
@@ -84,7 +84,7 @@ class AccountController extends Controller
                 $_SESSION['error'] = $error_msg;
                 $this->redirect('home');
             }
-        } catch (\Exception $e){
+        } catch (\Exception $e) {
             $this->redirect('error');
         }
     }

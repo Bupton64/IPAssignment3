@@ -150,7 +150,7 @@ class AccountModel extends Model
         $name = mysqli_real_escape_string($this->db, $name);
         $username = $this->username ?? "NULL";
         $username = mysqli_real_escape_string($this->db, $username);
-        $email= $this->email ?? "NULL";
+        $email = $this->email ?? "NULL";
         $email = mysqli_real_escape_string($this->db, $email);
         $password = $this->password ?? "NULL";
         $password = mysqli_real_escape_string($this->db, $password);
@@ -179,14 +179,14 @@ class AccountModel extends Model
     {
         $user = mysqli_real_escape_string($this->db, $user);
         $pass = mysqli_real_escape_string($this->db, $pass);
-        if(!$result = $this->db->query("SELECT * FROM `account` WHERE `username` = '$user';")){
+        if (!$result = $this->db->query("SELECT * FROM `account` WHERE `username` = '$user';")) {
             throw new \mysqli_sql_exception('Account select failed on login.', 100);
         }
-        if($result->num_rows == 0){
+        if ($result->num_rows == 0) {
             return false;
         }
         $result = $result->fetch_assoc();
-        if(password_verify($pass, $result['password'])){
+        if (password_verify($pass, $result['password'])) {
             return true;
         } else {
             return false;
@@ -198,7 +198,8 @@ class AccountModel extends Model
      * This function sends a confirmation to users email when account has been created.
      * To be completed
      */
-    public function sendConfirmationEmail(){
+    public function sendConfirmationEmail()
+    {
         $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
         try {
             //Server settings
@@ -244,10 +245,10 @@ class AccountModel extends Model
     public function findName($username)
     {
         $username = mysqli_real_escape_string($this->db, $username);
-        if(!$result = $this->db->query("SELECT * FROM `account` WHERE `account`.`username` = '$username';")){
+        if (!$result = $this->db->query("SELECT * FROM `account` WHERE `account`.`username` = '$username';")) {
             throw new \mysqli_sql_exception($this->db->error, $this->db->errno);
         }
-        if($result->num_rows == 0){
+        if ($result->num_rows == 0) {
             return 'true'; // If no other user exists with this username, return true
         } else {
             return 'false';
