@@ -129,5 +129,16 @@ $collection->attachRoute(
     )
 );
 
+$collection->attachRoute(
+    new Route(
+        '/error',
+        array(
+            '_controller' => 'agilman\a2\controller\HomeController::errorAction',
+            'methods' => 'GET',
+            'name' => 'error'
+        )
+    )
+);
+
 $router = new Router($collection);
 $router->setBasePath('/');
