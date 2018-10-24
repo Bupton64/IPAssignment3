@@ -169,14 +169,14 @@ body{
 
 #login-button
 {
-	margin-left: 1em;
+	margin-left: 3em;
 	margin-right: auto;
 	
 	margin-top: 25px;
 	height: 2.5em;
 	width: 8em;
 	letter-spacing: 1px;
-	font-size: 1.7em;
+	font-size: 1.1em;
 	font-weight: 400;
 	color: #FFFFFF;
 	background: #333333;
@@ -214,7 +214,7 @@ body{
 	height: 2.5em;
 	width: 8em;
 	letter-spacing: 1px;
-	font-size: 1.7em;
+	font-size: 1.3em;
 	font-weight: 400;
 	color: #FFFFFF;
 	background: #333333;
@@ -225,13 +225,17 @@ body{
 
 #browse
 {
+	width: 99%; 
+	height: 300px	;
+ 	margin: 10px auto; 
 	position: relative; 
+	display: inline-block;
 }
 
 #browse-panel
 {
 	float: left;
-	display: inline-block;
+	
 	width: 15%;
 	height: 50%;
 	position: fixed; 
@@ -256,9 +260,11 @@ body{
 
 #browse-result
 {
-	width: 95%;
+	width: 90%;
+	height: 80%;
 	float:right;
-	display:inline-block;
+	margin-right: 3em;
+
 }
 
 #browse-result table
@@ -319,6 +325,11 @@ body{
 
 
 /*   LiveSearch  */
+#search-bar
+{
+	text-align: right;
+}
+
 #livesearch
 {
 	display: flex;

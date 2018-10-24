@@ -65,40 +65,41 @@ session_start();
 			<div class = "title">
 			<h2>Browse Menu</h2>
 			</div>
-			<div id = "browse-panel">
+			<div id="browse">
+				<div id = "browse-panel">
+				<fieldset>
+	  				  <legend>Choose Browse Filter Options</legend>
 
-			<fieldset>
-  				  <legend>Choose Browse Filter Options</legend>
+	    			<div class= "filter-option">
+						<input type='checkbox' id="stock" name='stock' value="stock" onchange="showBrowse()">
+						<label for="stock">In-Stock Only</label>
+					</div>
+					<div class= "filter-option">
+						<input type='checkbox' id="spades" name='spades' value="spades" onchange="showBrowse()">
+						<label for="spades">Spades</label>
+					</div>
+					<div class= "filter-option">
+						<input type='checkbox' id="hammer" name='hammer' value="hammer" onchange="showBrowse()">
+						<label for="hammer">Hammer</label>
+					</div>
+					<div class= "filter-option">  
+						<input type='checkbox' id="powerT" name='powerT' value="powerT" onchange="showBrowse()">
+						<label for="powerT">Power Tools</label>
+					</div>
+					<div class= "filter-option">
+						<input type='checkbox' id="paintB" name='paintB' value="paintB" onchange="showBrowse()">
+						<label for="paintB">Paint Brushes</label>
+					</div>
 
-    			<div class= "filter-option">
-					<input type='checkbox' id="stock" name='stock' value="stock" onchange="showBrowse()">
-					<label for="stock">In-Stock Only</label>
-				</div>
-				<div class= "filter-option">
-					<input type='checkbox' id="spades" name='spades' value="spades" onchange="showBrowse()">
-					<label for="spades">Spades</label>
-				</div>
-				<div class= "filter-option">
-					<input type='checkbox' id="hammer" name='hammer' value="hammer" onchange="showBrowse()">
-					<label for="hammer">Hammer</label>
-				</div>
-				<div class= "filter-option">  
-					<input type='checkbox' id="powerT" name='powerT' value="powerT" onchange="showBrowse()">
-					<label for="powerT">Power Tools</label>
-				</div>
-				<div class= "filter-option">
-					<input type='checkbox' id="paintB" name='paintB' value="paintB" onchange="showBrowse()">
-					<label for="paintB">Paint Brushes</label>
+				</fieldset>
+					
 				</div>
 
-			</fieldset>
-				
+				<div id = browse-result>
+					<p >No selection criteria</p>
+
+				</div> 
 			</div>
-
-			<div id = browse-result>
-				<p >No selection criteria</p>
-
-			</div> 
 			<br>
 
 			<br>
