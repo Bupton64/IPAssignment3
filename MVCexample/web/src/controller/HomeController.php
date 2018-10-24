@@ -53,6 +53,12 @@ class HomeController extends Controller
         }
     }
 
+    public function errorAction()
+    {
+        $view = new View('errorPage');
+        echo $view->render();
+    }
+
     public function registrationAction()
     {
         $username = $_GET["q"];
