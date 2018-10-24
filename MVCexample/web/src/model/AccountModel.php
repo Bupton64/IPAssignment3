@@ -199,36 +199,36 @@ class AccountModel extends Model
      * To be completed
      */
     public function sendConfirmationEmail()
-    { 
+    {
         $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
-    try {
-        //Server settings
-        $mail->SMTPDebug = false;                                 // Enable verbose debug output
-        $mail->isSMTP();                                      // Set mailer to use SMTP
-        $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-        $mail->SMTPAuth = true;                               // Enable SMTP authentication
-        $mail->Username = 'Toolstocker@gmail.com';                 // SMTP username
-        $mail->Password = 'Bobtool22';                           // SMTP password
-        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-        $mail->Port = 587;                                    // TCP port to connect to
+        try {
+            //Server settings
+            $mail->SMTPDebug = false;                                 // Enable verbose debug output
+            $mail->isSMTP();                                      // Set mailer to use SMTP
+            $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;                               // Enable SMTP authentication
+            $mail->Username = 'Toolstocker@gmail.com';                 // SMTP username
+            $mail->Password = 'Bobtool22';                           // SMTP password
+            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 587;                                    // TCP port to connect to
 
-        //Recipients
-        $mail->setFrom('Toolstocker@gmail.com', 'Toolstocker');
-        $mail->addAddress($this->email, $this->name);     // Add a recipient
-        $mail->addBCC('Toolstocker@gmail.com');
+            //Recipients
+            $mail->setFrom('Toolstocker@gmail.com', 'Toolstocker');
+            $mail->addAddress($this->email, $this->name);     // Add a recipient
+            $mail->addBCC('Toolstocker@gmail.com');
 
-        //Content
-        $mail->isHTML(true);                                  // Set email format to HTML
-        $mail->Subject = 'Toolstocker Account Confirmation';
-        $mail->Body    = 'Welcome to Toolstocker, '.$this->username;
-        $mail->AltBody = 'Welcome to Toolstocker, '.$this->username;
+            //Content
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = 'Toolstocker Account Confirmation';
+            $mail->Body = 'Welcome to Toolstocker, ' . $this->username . ' we have confirmed your details and your account has been registered. To begin using Toolstocker, head back to our website and login!';
+            $mail->AltBody = 'Welcome to Toolstocker, ' . $this->username . ' we have confirmed your details and your account has been registered. To begin using Toolstocker, head back to our website and login!';
 
-        $mail->send();
-       // echo 'Message has been sent';
-    } catch (Exception $e) {
-        echo 'Message could not be sent. Mailer Error: ';//, $mail->ErrorInfo;
+            $mail->send();
+            // echo 'Message has been sent';
+        } catch (\Exception $e) {
+            $this->redirect('error');
+        }
     }
-}
 
     /***
      * Checks whether an account with the submitted username already exists.
